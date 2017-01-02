@@ -8,7 +8,7 @@ class NotFoundPage extends Component {
   render() {
     return (
       <div>
-        404 page
+        404
       </div>
     );
   }

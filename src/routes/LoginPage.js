@@ -10,7 +10,7 @@ import LoginForm from '../components/LoginForm';
 const Login = (props)=>{
   function handleSubmit(data) {
     props.dispatch({
-      type: 'users/login',
+      type: 'app/login',
       payload: data
     });
   }

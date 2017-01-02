@@ -1,7 +1,7 @@
 
 export default {
 
-  namespace: 'pages',
+  namespace: 'profile',
 
   state: {},
 
