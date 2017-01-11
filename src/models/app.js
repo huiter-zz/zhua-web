@@ -27,6 +27,7 @@ export default {
     *register(payload, { call, put }) {
       yield put({ type: 'updateInfo' });
       const { data } = yield call(api.register, {
+        nickname: payload.payload && payload.payload.nickname,
         email: payload.payload && payload.payload.email,
         password: payload.payload && payload.payload.password,
       });
@@ -58,10 +59,8 @@ export default {
         message.warning('密码长度必须大于 6 位并小于 50 位', 3);
         return;
       }
-
       message.warning('系统错误', 3);
-
-
+      
     }, 
     *login(payload, { call, put }) {
       yield put({ type: 'updateInfo' });

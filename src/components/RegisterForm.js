@@ -23,6 +23,10 @@ class RegisterForm extends Component {
         return false;
       }
       if (!values.email) {
+        message.error('请填写你的昵称');
+        return false;
+      }
+      if (!values.email) {
         message.error('请填写你的邮箱');
         return false;
       }
@@ -49,13 +53,24 @@ class RegisterForm extends Component {
               <Form onSubmit={this.handleSubmit}>
                 <Form.Item>
                   {
+                    getFieldDecorator('nickname', {
+                      initialValue: '',
+                      rules: [
+                        { required: true, message: '请填写你的昵称'},
+                        { max: 50, message: '昵称需不超过 12 个字' }
+                      ]
+                    })(<Input addonBefore={<Icon type="user" />}  type="text" placeholder="昵称" disabled={this.props.loading} />)
+                  }
+                </Form.Item>
+                <Form.Item>
+                  {
                     getFieldDecorator('email', {
                       initialValue: '',
                       rules: [
                         { type: 'email', message: '邮箱格式不正确' }, 
                         { required: true, message: '请填写你的邮箱'}
                       ]
-                    })(<Input addonBefore={<Icon type="user" />}  type="text" placeholder="邮箱" disabled={this.props.loading} />)
+                    })(<Input addonBefore={<Icon type="mail" />}  type="text" placeholder="邮箱" disabled={this.props.loading} />)
                   }
                 </Form.Item>
                 <Form.Item>
@@ -65,7 +80,7 @@ class RegisterForm extends Component {
                       rules: [
                         { required: true, message: '请填写密码'},
                         { min: 6,  message: '密码最少 6 位' },
-                        { max: 50, message: '密码最多 50 位' },
+                        { max: 50, message: '密码最多 50 位' }
                       ]
                     })(<Input addonBefore={<Icon type="lock" />}  type="password" placeholder="密码" disabled={this.props.loading} />)
                   }

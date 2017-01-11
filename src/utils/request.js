@@ -28,6 +28,7 @@ function optionsAppend(options){
 
   var customOptions={
     method:'GET',
+    credentials: 'include',
     headers:headers
   };
 

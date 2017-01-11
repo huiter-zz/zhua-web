@@ -18,6 +18,7 @@ const App = React.createClass({
     let url= window.location.pathname.replace('/','');
     url = url ? url : 'home';
     this.setState({current:url});
+    console.log(this.props.app.user)
   },
   getInitialState(){
     return {
@@ -44,12 +45,12 @@ const App = React.createClass({
               <Board>
                 <div style={{padding:"10px 20px 5px 10px"}}>
                   <div style={{display:"table-cell",verticalAlign: "top"}}>
-                    <img width="50px" src="/src/assets/img/avatar.jpg" />
+                    <img width="50px" src={this.props.app.user.avatar?this.props.app.user.avatar:'/src/assets/img/avatar.png'} />
                   </div>
                   <div style={{display:"table-cell",verticalAlign: "top",padding:"0px 10px"}}>
                     <Block height={5}></Block>
-                    <h3 style={{height:"20px",lineHeight:"20px"}}>huiter</h3>
-                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ 50</span>
+                    <h3 style={{height:"20px",lineHeight:"20px"}}>{this.props.app.user.nickname}</h3>
+                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ {this.props.app.user.balance?this.props.app.user.balance:0}</span>
                   </div>
                 </div>
               </Board>
@@ -90,5 +91,9 @@ App.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect()(App);
+function mapStateToProps({ app }) {
+  return { app };
+}
+
+export default connect(mapStateToProps)(App);
 

@@ -79,6 +79,16 @@ export async function getPageList(params) {
 }
 
 
+// 创建页面
+export async function createPage(params){
+  let url = BASE_URL + `/pages`;
+  let req = request(url,{
+    method: 'post',
+    body: JSON.stringify(params)
+  });
+
+  return req;
+}
 
 // 更新页面
 export async function updatePage(params){

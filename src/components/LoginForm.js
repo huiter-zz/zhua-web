@@ -55,7 +55,7 @@ class LoginForm extends Component {
                         { type: 'email', message: '邮箱格式不正确' }, 
                         { required: true, message: '请填写你的帐号邮箱'}
                       ]
-                    })(<Input addonBefore={<Icon type="user" />}  type="text" placeholder="邮箱" disabled={this.props.loading} />)
+                    })(<Input addonBefore={<Icon type="mail" />}  type="text" placeholder="邮箱" disabled={this.props.loading} />)
                   }
                 </Form.Item>
                 <Form.Item>
