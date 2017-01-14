@@ -29,7 +29,7 @@ const App = React.createClass({
     this.setState({ current: e.key });
   },
   logout() {
-     this.props.dispatch({
+    this.props.dispatch({
       type: 'app/logout',
       payload: {}
     });
@@ -59,6 +59,7 @@ const App = React.createClass({
                 <Menu mode="inline" theme="light" key="base" defaultOpenKeys={[this.state.openKey]} selectedKeys={[this.state.current]} onClick={this.handleClick}>
                   <Menu.Item key="home" theme="light"><Link to="home"><Icon type="home"/>页面库</Link></Menu.Item>
                   <Menu.Item key="profile" theme="light"><Link to="profile"><Icon type="user"/>账号</Link></Menu.Item>
+                  <Menu.Item key="bill" theme="light"><Link to="bill"><Icon type="pay-circle"/>充值</Link></Menu.Item>
                   <Menu.Item key="invite" theme="light"><Link to="invite"><Icon type="qrcode"/>邀请码</Link></Menu.Item>
                 </Menu>
               </Board>
@@ -68,6 +69,7 @@ const App = React.createClass({
                   <Menu.Item key="invite" theme="light"><Link onClick={this.logout}>退出</Link></Menu.Item>
                 </Menu>
               </Board>
+              <Block height={20}></Block>
             </Col>
             <Col xs={24} sm={24} md={18} lg={19}>
               <Board>

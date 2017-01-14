@@ -3,7 +3,11 @@ export default {
 
   namespace: 'invite',
 
-  state: {},
+  state: {
+    pages: [],
+    total: 0,
+    current: 1
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {

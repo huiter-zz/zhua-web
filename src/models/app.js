@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { message } from 'antd';
+import { Message } from 'antd';
 import * as api from '../services/base.js';
 import cookie from '../utils/cookie';
 
@@ -33,7 +33,7 @@ export default {
       });
 
       if (!data) {
-        message.warning('网络错误', 3);
+        Message.warning('网络错误', 3);
         return;
       }
 
@@ -51,15 +51,15 @@ export default {
       }
 
       if (data.errcode == 40001) {
-        message.warning('邮件地址不合法', 3);
+        Message.warning('邮件地址不合法', 3);
         return;
       }
 
       if (data.errcode == 40002) {
-        message.warning('密码长度必须大于 6 位并小于 50 位', 3);
+        Message.warning('密码长度必须大于 6 位并小于 50 位', 3);
         return;
       }
-      message.warning('系统错误', 3);
+      Message.warning('系统错误', 3);
       
     }, 
     *login(payload, { call, put }) {
@@ -70,7 +70,7 @@ export default {
       });
 
       if (!data) {
-        message.warning('网络错误', 3);
+        Message.warning('网络错误', 3);
         return;
       }
 
@@ -88,11 +88,11 @@ export default {
       }
 
       if (data.errcode == 40011) {
-        message.warning('邮箱或密码错误', 3);
+        Message.warning('邮箱或密码错误', 3);
         return;
       }
 
-      message.warning('系统错误', 3);
+      Message.warning('系统错误', 3);
 
     }, 
     *logout(payload, { call , put}) {
@@ -110,7 +110,7 @@ export default {
     *isLogin(payload, { call, put, select }) {
       const flag = !!cookie.getCookie('user');
       if (!flag) {
-        message.warning('您的登陆信息已过期，请重新登录！', 3);
+        Message.warning('您的登陆信息已过期，请重新登录！', 3);
         yield put(routerRedux.push('/login'));
       } else {
         let userInfo = cookie.getCookie('user');
@@ -122,6 +122,23 @@ export default {
             }
           });
         }
+      }
+    },
+    *updateProfile({payload}, { call, put, select }) {
+      const { data } = yield call(api.updateUserInfo, {name:payload.name,phone:payload.phone});
+      if (!data) {
+        Message.warning('网络错误', 3);
+        return;
+      }
+
+      if (!data.errcode) {
+        yield put({
+          type: 'updateInfo',
+          payload: {
+            info: data
+          }
+        });
+        return;
       }
     },
   },

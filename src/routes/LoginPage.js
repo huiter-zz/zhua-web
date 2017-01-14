@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 
+
 // 加载其它组件
 
 import LoginForm from '../components/LoginForm';
