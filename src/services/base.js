@@ -119,6 +119,24 @@ export async function getInvitedUsersList(params){
   return req;
 }
 
+// 获取页面快照列表
+export async function getSnapShots(params){
+  var url = BASE_URL + '/pages/' +`${params.id}` +'/snapshots';
+  var _query = '';
+  for (var k in params) {
+    if (params[k]) {
+      if (k !== 'id') {
+         _query += ( k + '=' + params[k] + '&');
+       }
+    }
+  }
+
+  if (_query) {
+    url = url + '?' + _query;
+  }
+  return request(url);
+}
+
 
 
 

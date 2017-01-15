@@ -45,7 +45,6 @@ export default {
           }
         });
 
-        document.cookie = 'user=' + encodeURIComponent(JSON.stringify(data));
         yield put(routerRedux.push('/home'));
         return;
       }
@@ -125,13 +124,14 @@ export default {
       }
     },
     *updateProfile({payload}, { call, put, select }) {
-      const { data } = yield call(api.updateUserInfo, {name:payload.name,phone:payload.phone});
+      const { data } = yield call(api.updateUserInfo, {nickname:payload.nickname,phone:payload.phone? +payload.phone: undefined,avatar:payload.avatar});
       if (!data) {
         Message.warning('网络错误', 3);
         return;
       }
 
       if (!data.errcode) {
+        Message.success('修改成功', 3);
         yield put({
           type: 'updateInfo',
           payload: {
@@ -145,8 +145,9 @@ export default {
 
   reducers: {
     updateInfo(state, action) {
-      state.user = action.payload && action.payload.info;
-      return state;
+      let user = action.payload && action.payload.info;
+    document.cookie = 'user=' + encodeURIComponent(JSON.stringify(user));
+      return {...state,user:user};
     }
   },
 

@@ -4,6 +4,7 @@ import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pa
 import Block from '../components/Block';
 import Screen from '../components/Screen';
 import { Link } from 'dva/router';
+import { routerRedux } from 'dva/router';
 
 // 加载其它组件
 
@@ -29,10 +30,14 @@ class HomePage extends Component {
       })
     }
 
+    goPage(id){
+      this.props.history.push('/page?id='+id);
+    }
+
     render(){
     	const columns = [{
             title: '页面名称',
-            dataIndex: 'name',
+            dataIndex: 'title',
             render: (text, record, index) => (
             	<div>
             		<Screen></Screen><span style={{verticalAlign:"top",lineHeight:"50px"}}>{text}</span>
@@ -60,13 +65,18 @@ class HomePage extends Component {
           }
         },{
             title: '添加时间',
-            dataIndex: 'createDate',
+            dataIndex: 'createdTime',
+            key: 'createdTime',
+            render: (createdTime) => {
+              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD H:mm:ss'):'无效时间'}</div>);
+            }
+
         },{
             title: '操作',
             dataIndex: 'operation',
             render: ( text, record, index) => (
             	<div>
-    	            <Button type="ghost" icon="inbox" style={{marginRight:"8px"}}></Button>
+    	            <Button type="ghost" icon="inbox" style={{marginRight:"8px"}} onClick={()=>{this.goPage(record.id)}}></Button>
     	            <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
     	            	<Button type="ghost" icon="delete"></Button>
     	            </Popconfirm>

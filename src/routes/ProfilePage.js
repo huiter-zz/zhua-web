@@ -34,10 +34,19 @@ class ProfilePage extends Component {
         payload: values
       });
 
+      this.setState({editing:false});
+
     });
   };
 
+
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
+
   render() {
+    console.log('重新渲染');
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 6 },
@@ -49,7 +58,7 @@ class ProfilePage extends Component {
         <Block height={30}></Block>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item {...formItemLayout} label="头像">
-            <AvatarEditer imageUrl='http://huiter.me/avatar.jpg'></AvatarEditer>
+            <AvatarEditer imageUrl={this.props.app.user.avatar}></AvatarEditer>
           </Form.Item>
           <Form.Item {...formItemLayout} label="邮箱" extra="目前邮箱不支持修改">
             <Input type="text" placeholder="" disabled value={this.props.app.user.email}/>
