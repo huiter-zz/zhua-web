@@ -19,8 +19,11 @@ class HomePage extends Component {
       super(props);
 
       this.state = {
-        showPageAddModal: false,
+        showPageAddModal: false
       }
+      this.goPage = this.goPage.bind(this);
+      this.paginationOnChange = this.paginationOnChange.bind(this);
+      this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
     };
 
     deletePage(id){
@@ -34,13 +37,25 @@ class HomePage extends Component {
       this.props.history.push('/page?id='+id);
     }
 
+    paginationOnChange(page){
+      this.props.history.replace('/home?page='+page);
+    }
+
+    paginationOnShowSizeChange(current, pageSize) {
+      this.props.dispatch({
+        type: 'home/updateLocalPagination',
+        payload: {pageSize:pageSize}
+      })
+      this.props.history.replace('/home?page='+'1');
+    }
+
     render(){
     	const columns = [{
             title: '页面名称',
             dataIndex: 'title',
             render: (text, record, index) => (
             	<div>
-            		<Screen></Screen><span style={{verticalAlign:"top",lineHeight:"50px"}}>{text}</span>
+            		<Screen imageUrl={record.image} title={text} id={record.id}></Screen>
             	</div>
             )
         },{
@@ -50,11 +65,29 @@ class HomePage extends Component {
             	<a href={text} target="_blank">{text}</a>
             )
         },{
+            title: '添加时间',
+            dataIndex: 'createdTime',
+            key: 'createdTime',
+            render: (createdTime) => {
+              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD H:mm:ss'):'无效时间'}</div>);
+            }
+
+        },{
+            title: '状态',
+            dataIndex: 'lastFetchTime',
+            key: 'lastFetchTime',
+            render: (text, record, index) => {
+              let a = moment(record.lastFetchTime).valueOf();
+              let b = new Date().valueOf();
+              return(<div>{ a>b ? <Badge status="success" text="已完成"/>: <Badge status="processing" text="等待"/>}</div>);
+            }
+
+        },{
           title: '标签',
           dataIndex: 'tags',
           key: 'tags',
           render: (tags) => {
-           	return (tags && tags.map((tag) => {
+            return (tags && tags.map((tag) => {
                   let tagElem = (
                       <Tag key={tag} style={{cursor:'text'}}>
                         {tag}
@@ -63,14 +96,6 @@ class HomePage extends Component {
                   return tagElem;
                 }))
           }
-        },{
-            title: '添加时间',
-            dataIndex: 'createdTime',
-            key: 'createdTime',
-            render: (createdTime) => {
-              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD H:mm:ss'):'无效时间'}</div>);
-            }
-
         },{
             title: '操作',
             dataIndex: 'operation',
@@ -102,7 +127,16 @@ class HomePage extends Component {
               <Table columns = { columns } dataSource = { this.props.home.pages } pagination={false}/> 
               <Block height={20}></Block>
               <Row type="flex" justify="end">
-                <Pagination total={this.props.home.total} showTotal={total => `共 ${this.props.home.total} 项`} current={this.props.home.current} pageSize={5}  defaultCurrent={1}/>
+                <Pagination 
+                  onChange={this.paginationOnChange} 
+                  total={this.props.home.total} 
+                  showTotal={total => `共 ${this.props.home.total} 项`} 
+                  current={this.props.home.current} 
+                  defaultCurrent={1} 
+                  pageSizeOptions={['5','10','20']} 
+                  showSizeChanger={true} 
+                  onShowSizeChange={this.paginationOnShowSizeChange}
+                  defaultPageSize={this.props.home.pageSize}/>
               </Row>
             </div>
       );

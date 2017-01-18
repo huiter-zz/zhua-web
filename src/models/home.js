@@ -9,7 +9,8 @@ export default {
   state: {
     pages: [],
     total: 0,
-    current: 1
+    current: 1,
+    pageSize: 5
   },
 
   subscriptions: {
@@ -26,17 +27,25 @@ export default {
   },
 
   effects: {
-    * query({ payload }, { call, put }) {
-      var page = payload.payload && payload.payload.page;
+    * query({ payload }, { call, put, select }) {
+      var page = payload && payload.page;
+      page = page? (+page) :1;
+      const pageSize = yield select(state => state.home.pageSize);
+      console.log('222',pageSize);
       let obj = yield call(api.getPageList,{
-        page: page?page:1,
-        count: 5
+        page: page,
+        count: pageSize?pageSize:5
       });
+      
+      if (!obj.err) {
+        var data = obj.data;
+        data.current = page;
+        yield put({
+          type:'updateLocalPageList',
+          payload:data
+        });
+      }
 
-      yield put({
-        type:'updateLocalPageList',
-        payload:obj.data
-      });
     },
     * createPage({ payload },{ call, put}){
       let newPage = yield call(api.createPage,payload);
@@ -60,7 +69,7 @@ export default {
 
   reducers: {
     updateLocalPageList(state, {payload}) {
-      return {...state, total:payload.total , pages :payload.data , current:1};
+      return {...state, total:payload.total , pages :payload.data , current:payload.current};
     },
     addLocalPage(state, {payload}) {
       state.pages.unshift(payload);
@@ -75,6 +84,9 @@ export default {
       });
       
       return {...state, total:state.total - 1, pages: pages};   
+    },
+    updateLocalPagination(state, {payload}){
+      return {...state, pageSize:payload.pageSize}; 
     }
 
   },

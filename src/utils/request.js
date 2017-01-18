@@ -1,6 +1,7 @@
 'use strict';
 
 import fetch from 'dva/fetch';
+import { routerRedux } from 'dva/router';
 import cookie from './cookie';
 
 function parseJSON(response) {
@@ -8,8 +9,22 @@ function parseJSON(response) {
 }
 
 function checkStatus(response) {
-  return response;
+  console.log(response);
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+
+  
+  if (response.status == 401) {
+    window.location = '/login';
+  }
+
+  const error = new Error(response.statusText);
+  error.statusCode = response.status;
+  error.response = response;
+  throw error;
 }
+
 
 //全局添加headers，及 sessionID 票据
 function optionsAppend(options){

@@ -8,7 +8,8 @@ export default {
   namespace: 'app',
 
   state: {
-    user: {}
+    user: {},
+    balances:{}
   },
 
   subscriptions: {
@@ -43,6 +44,10 @@ export default {
           payload: {
             info: data
           }
+        });
+
+        yield put({
+          type: 'balances'
         });
 
         yield put(routerRedux.push('/home'));
@@ -81,6 +86,10 @@ export default {
           }
         });
 
+        yield put({
+          type: 'balances'
+        });
+
         document.cookie = 'user=' + encodeURIComponent(JSON.stringify(data));
         yield put(routerRedux.push('/home'));
         return;
@@ -93,7 +102,16 @@ export default {
 
       Message.warning('系统错误', 3);
 
-    }, 
+    },
+    *balances(payload, { call , put}) {
+      const balances = yield call(api.getBalances, {});
+
+      yield put({
+        type: 'updateBalances',
+        payload: balances
+      });
+
+    },
     *logout(payload, { call , put}) {
       const { data } = yield call(api.logout, {});
       cookie.delCookie('user');
@@ -146,9 +164,14 @@ export default {
   reducers: {
     updateInfo(state, action) {
       let user = action.payload && action.payload.info;
-    document.cookie = 'user=' + encodeURIComponent(JSON.stringify(user));
+      document.cookie = 'user=' + encodeURIComponent(JSON.stringify(user));
       return {...state,user:user};
-    }
+    },
+    updateBalances(state, {payload}) {
+      let balances = payload
+      return {...state,balances:balances};
+    },
+
   },
 
 }

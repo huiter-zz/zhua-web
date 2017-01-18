@@ -8,36 +8,51 @@ export default {
   state: {
     snapshots: [],
     total: 0,
-    current: 1
+    current: 1,
+    pageSize: 6
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
+      history.listen(function (location) {
+        console.log(location);
+        if (location.pathname.indexOf('/page')>-1) {
+            dispatch({
+                type: 'query',
+                payload:{
+                  page:location.query.page,
+                  id:location.query.id,
+                },
+            })
+        } 
+      });
     },
   },
 
   effects: {
-    *snapshots({ payload }, { call, put }) {
-            console.log('three');
-        var page = payload.payload && payload.payload.page;
+    *snapshots({ payload }, { call, put, select}) {
+        var page = payload && payload.page;
+        const pageSize = yield select(state => state.page.pageSize);
         let obj = yield call(api.getSnapShots,{
           page: page?page:1,
-          count: 5,
-          stime:payload.stime,
-          etime:payload.etime,
+          count: pageSize,
           id:payload.id
         });
 
-        yield put({
-          type:'updateLocalSnapShotList',
-          payload:obj.data
-        });
+        if (!obj.err) {
+          var data = obj.data;
+          data.current = page?page:1;
+          yield put({
+            type:'updateLocalSnapShotList',
+            payload:data
+          });
+        }
     },
   },
 
   reducers: {
     updateLocalSnapShotList(state, {payload}) {
-      return {...state, total:payload.total , snapshots :payload.data , current:1};
+      return {...state, total:payload.total , snapshots :payload.data , current:payload.current};
     },
   },
 

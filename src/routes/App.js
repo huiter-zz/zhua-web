@@ -15,10 +15,12 @@ const MenuItemGroup = Menu.ItemGroup;
 const App = React.createClass({
 
   componentDidMount() {
-    let url= window.location.pathname.replace('/','');
-    url = url ? url : 'home';
-    this.setState({current:url});
-    console.log(this.props.app.user)
+    let key= window.location.pathname.replace('/','');
+    if (key == '' || key == 'page') {
+      key = 'home';
+    }
+
+    this.setState({current:key});
   },
   getInitialState(){
     return {
@@ -50,7 +52,7 @@ const App = React.createClass({
                   <div style={{display:"table-cell",verticalAlign: "top",padding:"0px 10px"}}>
                     <Block height={5}></Block>
                     <h3 style={{height:"20px",lineHeight:"20px"}}>{this.props.app.user.nickname}</h3>
-                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ {this.props.app.user.balance?this.props.app.user.balance:0}</span>
+                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ {this.props.app.balances.cash + this.props.app.balances.gift}</span>
                   </div>
                 </div>
               </Board>

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import Block from '../components/Block';
+import Snapshot from '../components/Snapshot';
 import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pagination, DatePicker} from 'antd';
 
 const Search = Input.Search;
@@ -13,6 +14,7 @@ class PagePage extends Component {
 
     constructor(props) {
       super(props);
+      this.paginationOnChange = this.paginationOnChange.bind(this);
     }
 
     componentDidMount(){
@@ -24,17 +26,27 @@ class PagePage extends Component {
       })
     }
 
-    onChange(date, dateString) {
-      console.log(date.dateString);
+
+    paginationOnChange(page){
+        this.props.history.push('/page?id='+this.props.location.query.id + '&page=' +page);
+        this.props.dispatch({
+          type: 'page/snapshots',
+          payload:{
+              id:this.props.location.query.id,
+              page:page
+          }
+        })
     }
+
 
     render(){
       var items = [];
       for (var i = this.props.page.snapshots.length - 1; i >= 0; i--) {
+        var key = this.props.page.snapshots[i].url;
         var url = this.props.page.snapshots[i].url;
         var createdTime = this.props.page.snapshots[i].createdTime;
-        createdTime = createdTime ? moment(createdTime).format('YYYY-MM-DD H:mm:ss'):'无效时间'
-        items.push(<Col style={{maxHeight:"400px",overflow:"scroll"}} span={8}><img style={{maxWidth:"100%",height:"auto"}} src={url}/><p>{createdTime}</p></Col>);
+        createdTime = createdTime ? moment(createdTime).format('YYYY-MM-DD'):'无效时间'
+        items.push(<Snapshot key={i} imageUrl={url} date={createdTime}/>);
       }
 
       return(
@@ -43,14 +55,18 @@ class PagePage extends Component {
                 页面
               </div>
               <Block height={20}></Block>
-              <RangePicker onChange={this.onChange} /> 
-              <Block height={60}></Block>
-              <Row gutter={16}> 
+              <Row> 
                 {items}
               </Row>
               <Block height={20}></Block>
               <Row type="flex" justify="end">
-                <Pagination total={this.props.page.total} showTotal={total => `共 ${this.props.page.total} 项`} current={this.props.page.current} pageSize={5}  defaultCurrent={1}/>
+                <Pagination 
+                onChange={this.paginationOnChange} 
+                total={this.props.page.total} 
+                showTotal={total => `共 ${this.props.page.total} 项`} 
+                current={this.props.page.current} 
+                defaultPageSize={this.props.page.pageSize} 
+                defaultCurrent={this.props.page.current} />
               </Row>
           </div>
       );

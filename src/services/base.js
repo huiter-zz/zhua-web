@@ -24,6 +24,15 @@ export async function login(params) {
   return req;
 }
 
+// 获取余额
+export async function getBalances(params){
+  let url = BASE_URL + '/users/balances';
+  let req = request(url,{
+    method: 'get'
+  });
+  return req;
+}
+
 // 修改用户信息
 export async function updateUserInfo(params){
   let url = BASE_URL + '/users/me';
@@ -111,12 +120,21 @@ export async function deletePageByID(id){
 }
 
 // 获取被邀请者列表
-export async function getInvitedUsersList(params){
-  let url = BASE_URL + `/notifications?limit=${params.limit}`;
-  let req = request(url,{
-    method: 'get'
-  });
-  return req;
+export async function getnvitations(params){
+  var url = BASE_URL + '/users/invitations';
+  var _query = '';
+  for (var k in params) {
+    if (params[k]) {
+      if (k !== 'id') {
+         _query += ( k + '=' + params[k] + '&');
+       }
+    }
+  }
+
+  if (_query) {
+    url = url + '?' + _query;
+  }
+  return request(url);
 }
 
 // 获取页面快照列表
