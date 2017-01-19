@@ -14,8 +14,12 @@ class EditableTagGroup extends Component {
         };
     };
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({tagsNum:nextProps.tags.length,tags:nextProps.tags});
+    }
+
     componentWillMount() {
-      this.setState({tagsNum:this.props.tags.length,tags:this.props.tags});
+        this.setState({tagsNum:this.props.tags.length,tags:this.props.tags});
     };
 
     removeTag = (removedValue) => {

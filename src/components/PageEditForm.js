@@ -19,6 +19,8 @@ class PageEditForm extends Component {
     this.state = {
       loading: false,
       visible: false,
+      title: this.props.item.title?this.props.item.title:[],
+      page: this.props.item.page?this.props.item.page:[],
       tags: this.props.item.tags?this.props.item.tags:[]
     };
 
@@ -28,8 +30,14 @@ class PageEditForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
 
+    if (nextProps.item.id !== this.props.item.id) {
+      this.setState({
+          tags: nextProps.item.tags?nextProps.item.tags:[],
+          title: nextProps.item.title?nextProps.item.title:[],
+          page: nextProps.item.page?nextProps.item.page:[]
+      }) 
+    }
   }
 
   addTag = (inputValue) => {
@@ -85,7 +93,7 @@ class PageEditForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
           <div style={{display:"inline"}}>
-            <Button type="ghost" icon="edit" style={{marginRight:"8px"}} onClick={()=>{this.setState({visible:true})}}></Button>
+            <Button type="ghost" icon="edit" style={{marginRight:"8px"}} onClick={()=>{this.props.form.resetFields();this.setState({visible:true})}}></Button>
             <Modal title="添加页面"
                 visible={this.state.visible}
                 onOk={this.handleOk}
@@ -97,7 +105,7 @@ class PageEditForm extends Component {
                 <Form.Item>
                   {
                     getFieldDecorator('title', {
-                      initialValue: this.props.item.title,
+                      initialValue: this.state.title,
                       rules: [
                         { required: true, message: '请填写页面名称'}
                       ]
@@ -107,7 +115,7 @@ class PageEditForm extends Component {
                 <Form.Item>
                   {
                     getFieldDecorator('page', {
-                      initialValue: this.props.item.page,
+                      initialValue: this.state.page,
                       rules: [
                         { type: 'url', message: '链接格式不正确' }, 
                       ]
@@ -115,9 +123,7 @@ class PageEditForm extends Component {
                   }
                 </Form.Item>
                 <Form.Item>
-                  {
-                    <EditableTagGroup tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}/>
-                  }
+                  <EditableTagGroup tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}/>
                 </Form.Item>
               </Form>
             </Modal>
