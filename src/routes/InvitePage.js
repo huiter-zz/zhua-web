@@ -38,7 +38,7 @@ function InvitePage(props) {
           邀请码
         </div>
           <Block height={20}></Block>
-          <Alert message={"你的邀请码为 " + props.app.user.uid} type="info" showIcon/>
+          <Alert message={"你的邀请码为 「" + props.app.user.invitationCode + "」"} type="info" showIcon/>
           <Block height={10}></Block>
           <Table columns = { columns } dataSource = { props.invite.pages } pagination={false}/> 
           <Block height={20}></Block>

@@ -11,7 +11,7 @@ import { connect } from 'dva';
 const FormItem = Form.Item;
 
 
-class PageCreateForm extends Component {
+class PageEditForm extends Component {
 
   constructor(props) {
     super(props);
@@ -19,12 +19,17 @@ class PageCreateForm extends Component {
     this.state = {
       loading: false,
       visible: false,
-      tags: []
+      tags: this.props.item.tags?this.props.item.tags:[]
     };
 
     this.addTag = this.addTag.bind(this);
     this.removeTag = this.removeTag.bind(this);
     this.handleOk = this.handleOk.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+
   }
 
   addTag = (inputValue) => {
@@ -63,10 +68,12 @@ class PageCreateForm extends Component {
         return false;
       }
       this.setState({visible:false});
+
+      values.id = this.props.item.id;
       values.tags = this.state.tags;
  
       this.props.dispatch({
-        type: 'home/createPage',
+        type: 'home/editPage',
         payload:  values
       });
   
@@ -77,8 +84,8 @@ class PageCreateForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-          <div>
-            <Button type="ghost" icon="plus" onClick={()=>{this.props.form.resetFields();this.setState({visible:true});}}>添加</Button>
+          <div style={{display:"inline"}}>
+            <Button type="ghost" icon="edit" style={{marginRight:"8px"}} onClick={()=>{this.setState({visible:true})}}></Button>
             <Modal title="添加页面"
                 visible={this.state.visible}
                 onOk={this.handleOk}
@@ -90,21 +97,21 @@ class PageCreateForm extends Component {
                 <Form.Item>
                   {
                     getFieldDecorator('title', {
-                      initialValue: '',
+                      initialValue: this.props.item.title,
                       rules: [
                         { required: true, message: '请填写页面名称'}
                       ]
-                    })(<Input type="text" placeholder="页面名称" disabled={this.props.loading} />)
+                    })(<Input type="text" placeholder="页面名称" disabled={this.props.loading}/>)
                   }
                 </Form.Item>
                 <Form.Item>
                   {
                     getFieldDecorator('page', {
-                      initialValue: '',
+                      initialValue: this.props.item.page,
                       rules: [
                         { type: 'url', message: '链接格式不正确' }, 
                       ]
-                    })(<Input type="url" placeholder="链接" disabled={this.props.loading} />)
+                    })(<Input type="url" placeholder="链接" disabled />)
                   }
                 </Form.Item>
                 <Form.Item>
@@ -122,4 +129,4 @@ class PageCreateForm extends Component {
 
 
 
-export default connect()(Form.create()(PageCreateForm));
+export default connect()(Form.create()(PageEditForm));

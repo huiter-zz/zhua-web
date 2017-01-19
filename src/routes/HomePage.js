@@ -9,6 +9,7 @@ import { routerRedux } from 'dva/router';
 // 加载其它组件
 
 import PageCreateForm from '../components/PageCreateForm';
+import PageEditForm from '../components/PageEditForm';
 
 const Search = Input.Search;
 const InputGroup = Input.Group;
@@ -19,11 +20,13 @@ class HomePage extends Component {
       super(props);
 
       this.state = {
-        showPageAddModal: false
+        showPageEditModal: false,
+        currentItem:''
       }
       this.goPage = this.goPage.bind(this);
       this.paginationOnChange = this.paginationOnChange.bind(this);
       this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
+      this.editPage = this.editPage(this);
     };
 
     deletePage(id){
@@ -37,6 +40,18 @@ class HomePage extends Component {
       this.props.history.push('/page?id='+id);
     }
 
+    editPage(item){
+
+    }
+
+    onSearch(value){
+      this.props.dispatch({
+        type: 'home/updateLocalKeyword',
+        payload: {keyword:value}
+      })
+      this.props.history.replace('/home?page=1');
+    }
+
     paginationOnChange(page){
       this.props.history.replace('/home?page='+page);
     }
@@ -46,7 +61,7 @@ class HomePage extends Component {
         type: 'home/updateLocalPagination',
         payload: {pageSize:pageSize}
       })
-      this.props.history.replace('/home?page='+'1');
+      this.props.history.replace('/home?page=1');
     }
 
     render(){
@@ -62,7 +77,7 @@ class HomePage extends Component {
             title: '链接',
             dataIndex: 'page',
             render: ( text, record, index) => (
-            	<a href={text} target="_blank">{text}</a>
+            	<a href={text} style={{display: "inline-block",width: "200px"}} target="_blank">{text}</a>
             )
         },{
             title: '添加时间',
@@ -101,6 +116,7 @@ class HomePage extends Component {
             dataIndex: 'operation',
             render: ( text, record, index) => (
             	<div>
+                  <PageEditForm item={record}></PageEditForm>
     	            <Button type="ghost" icon="inbox" style={{marginRight:"8px"}} onClick={()=>{this.goPage(record.id)}}></Button>
     	            <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
     	            	<Button type="ghost" icon="delete"></Button>
@@ -116,7 +132,11 @@ class HomePage extends Component {
     	        <Alert message="计费规则：1 个链接 1 月只要 1 块钱。" type="info" showIcon/>
     	       	<InputGroup>
     	       		<Col xs={24} sm={24} md={12} lg={6}>
-    	       			<Input placeholder="搜索"/>
+    	       			 <Search
+                      placeholder="搜索"
+                      style={{ width: 200 }}
+                      onSearch={value=>{this.onSearch(value)}}
+                    />
     	       		</Col>
     	       		<Col xs={4}>
                   <PageCreateForm></PageCreateForm>
@@ -136,7 +156,7 @@ class HomePage extends Component {
                   pageSizeOptions={['5','10','20']} 
                   showSizeChanger={true} 
                   onShowSizeChange={this.paginationOnShowSizeChange}
-                  defaultPageSize={this.props.home.pageSize}/>
+                  defaultPageSize={+this.props.home.pageSize}/>
               </Row>
             </div>
       );
