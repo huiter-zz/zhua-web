@@ -73,7 +73,6 @@ export async function logout(params) {
 
 // 获取页面
 export async function getPageList(params) {
-  console.log(params);
   var url = BASE_URL + '/pages';
   var _query = '';
   for (var k in params) {
