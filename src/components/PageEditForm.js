@@ -93,7 +93,7 @@ class PageEditForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
           <div style={{display:"inline"}}>
-            <Button type="ghost" icon="edit" style={{marginRight:"8px"}} onClick={()=>{this.props.form.resetFields();this.setState({visible:true})}}></Button>
+            <Button type="ghost" icon="edit" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.props.form.resetFields();this.setState({visible:true})}}></Button>
             <Modal title="添加页面"
                 visible={this.state.visible}
                 onOk={this.handleOk}

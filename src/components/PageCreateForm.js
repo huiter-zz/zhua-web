@@ -77,7 +77,7 @@ class PageCreateForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-          <div>
+          <div style={{display:"inline-block",verticalAlign: "top"}}>
             <Button type="ghost" icon="plus" onClick={()=>{this.props.form.resetFields();this.setState({visible:true});}}>添加</Button>
             <Modal title="添加页面"
                 visible={this.state.visible}

@@ -31,6 +31,7 @@ export default {
         nickname: payload.payload && payload.payload.nickname,
         email: payload.payload && payload.payload.email,
         password: payload.payload && payload.payload.password,
+        referralsCode: payload.payload && payload.payload.referralsCode,
       });
 
       if (!data) {
@@ -104,7 +105,7 @@ export default {
 
     },
     *balances(payload, { call , put}) {
-      const balances = yield call(api.getBalances, {});
+      let balances = yield call(api.getBalances, {});
 
       yield put({
         type: 'updateBalances',
@@ -168,7 +169,8 @@ export default {
       return {...state,user:user};
     },
     updateBalances(state, {payload}) {
-      let balances = payload
+      console.log(payload);
+      let balances = payload.data;
       return {...state,balances:balances};
     },
 

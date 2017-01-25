@@ -37,13 +37,14 @@ const App = React.createClass({
     });
   },
   render() {
+    console.log(this.props.app.balances);
     return (
       <div>
         <div className={styles.main_header}>
         </div>
         <div className={styles.main_wrapper}>
           <Row gutter={24}>
-            <Col xs={24} sm={24} md={6} lg={5}>
+            <Col xs={24} sm={6} md={6} lg={5}>
               <Board>
                 <div style={{padding:"10px 20px 5px 10px"}}>
                   <div style={{display:"table-cell",verticalAlign: "top"}}>
@@ -73,7 +74,7 @@ const App = React.createClass({
               </Board>
               <Block height={20}></Block>
             </Col>
-            <Col xs={24} sm={24} md={18} lg={19}>
+            <Col xs={24} sm={18} md={18} lg={19}>
               <Board>
                 <div style={{minHeight:"200px",padding:"24px"}}>
                   {this.props.children}

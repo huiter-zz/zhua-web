@@ -85,6 +85,13 @@ class RegisterForm extends Component {
                     })(<Input addonBefore={<Icon type="lock" />}  type="password" placeholder="密码" disabled={this.props.loading} />)
                   }
                 </Form.Item>
+                <Form.Item>
+                  {
+                    getFieldDecorator('referralsCode', {
+                      initialValue: ''
+                    })(<Input addonBefore={<Icon type="share-alt" />}  type="text" placeholder="邀请码" disabled={this.props.loading} />)
+                  }
+                </Form.Item>
                 <Form.Item style={{ textAlign:'center'}}>
                   <Button type="primary" htmlType="submit" loading={this.props.loading}>注册</Button>
                 </Form.Item>

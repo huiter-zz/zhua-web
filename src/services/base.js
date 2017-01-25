@@ -156,6 +156,23 @@ export async function getSnapShots(params){
 }
 
 
+// 获取页面
+export async function getInvitedUserList(params) {
+  var url = BASE_URL + '/users/invitations';
+  var _query = '';
+  for (var k in params) {
+    if (params[k]) {
+      _query += ( k + '=' + params[k] + '&');
+    }
+  }
+
+  if (_query) {
+    url = url + '?' + _query;
+  }
+  return request(url);
+}
+
+
 
 
 

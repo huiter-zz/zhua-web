@@ -7,46 +7,73 @@ import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pa
 const Search = Input.Search;
 const InputGroup = Input.Group;
 
-function InvitePage(props) {
-    console.log(props);
-    const columns = [{
-            title: '用户',
-            dataIndex: 'name',
-            render: (text, record, index) => (
+class InvitePage extends Component {
+
+    constructor(props) {
+      super(props);
+      this.paginationOnChange = this.paginationOnChange.bind(this);
+      this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
+
+    };
+
+    paginationOnChange(page){
+      this.props.history.replace('/invite?page='+page);
+    }
+
+    paginationOnShowSizeChange(current, pageSize) {
+      this.props.dispatch({
+        type: 'invite/updateLocalPagination',
+        payload: {pageSize:pageSize}
+      })
+      this.props.history.replace('/invite?page=1');
+    }
+
+    render(){      
+            console.log(this.props.invite.pages);
+             const columns = [{
+                    title: '用户',
+                    dataIndex: 'nickname',
+                    render: (text, record, index) => (
+                        <div>
+                           <span>{text}</span>
+                        </div>
+                    )
+                },{
+                    title: '收益',
+                    dataIndex: 'operation',
+                    render: ( text, record, index) => (
+                        <div>
+                          -
+                        </div>
+                    )
+                }];
+          return (
+            <div>
                 <div>
-                    <Screen></Screen><span style={{verticalAlign:"top",lineHeight:"50px"}}>{text}</span>
+                  邀请码
                 </div>
-            )
-        },{
-            title: '注册时间',
-            dataIndex: 'createDate',
-        },{
-            title: '收益',
-            dataIndex: 'operation',
-            render: ( text, record, index) => (
-                <div>
-                    <Button type="ghost" icon="inbox" style={{marginRight:"8px"}}></Button>
-                    <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
-                        <Button type="ghost" icon="delete"></Button>
-                    </Popconfirm>
-                </div>
-            )
-        }];
-  return (
-    <div>
-        <div>
-          邀请码
-        </div>
-          <Block height={20}></Block>
-          <Alert message={"你的邀请码为 「" + props.app.user.invitationCode + "」"} type="info" showIcon/>
-          <Block height={10}></Block>
-          <Table columns = { columns } dataSource = { props.invite.pages } pagination={false}/> 
-          <Block height={20}></Block>
-          <Row type="flex" justify="end">
-            <Pagination total={props.invite.total} showTotal={total => `共 ${props.invite.total} 项`} current={props.invite.current} pageSize={5}  defaultCurrent={1}/>
-          </Row>
-    </div>
-  );
+                  <Block height={20}></Block>
+                  <Alert message={"你的邀请码为 「" + this.props.app.user.invitationCode + "」"} type="info" showIcon/>
+                  <Block height={10}></Block>
+                  <Table columns = { columns } dataSource = { this.props.invite.pages } pagination={false}/> 
+                  <Block height={20}></Block>
+                      <Row type="flex" justify="end">
+                        <Pagination 
+                          onChange={this.paginationOnChange} 
+                          total={this.props.invite.total} 
+                          showTotal={total => `共 ${this.props.invite.total} 项`} 
+                          current={this.props.invite.current} 
+                          defaultCurrent={1} 
+                          pageSizeOptions={['5','10','20']} 
+                          showSizeChanger={true} 
+                          onShowSizeChange={this.paginationOnShowSizeChange}
+                          defaultPageSize={+this.props.invite.pageSize}/>
+                      </Row>
+            </div>
+          );     
+    }
+
+
 }
 
 function mapStateToProps({ invite, app }) {

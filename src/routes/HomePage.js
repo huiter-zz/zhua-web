@@ -77,14 +77,14 @@ class HomePage extends Component {
             title: '链接',
             dataIndex: 'page',
             render: ( text, record, index) => (
-            	<a href={text} style={{display: "inline-block",width: "200px"}} target="_blank">{text}</a>
+            	<a href={text} style={{display: "inline-block",maxWidth: "200px"}} target="_blank">{text}</a>
             )
         },{
             title: '添加时间',
             dataIndex: 'createdTime',
             key: 'createdTime',
             render: (createdTime) => {
-              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD H:mm:ss'):'无效时间'}</div>);
+              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}</div>);
             }
 
         },{
@@ -117,9 +117,9 @@ class HomePage extends Component {
             render: ( text, record, index) => (
             	<div>
                   <PageEditForm item={record}></PageEditForm>
-    	            <Button type="ghost" icon="inbox" style={{marginRight:"8px"}} onClick={()=>{this.goPage(record.id)}}></Button>
+    	            <Button type="ghost" icon="inbox" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.goPage(record.id)}}></Button>
     	            <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
-    	            	<Button type="ghost" icon="delete"></Button>
+    	            	<Button type="ghost" icon="delete" style={{marginRight:"8px",marginBottom:"6px"}}></Button>
     	            </Popconfirm>
                 </div>
             )
@@ -131,20 +131,16 @@ class HomePage extends Component {
             	<Block height={20}></Block>
     	        <Alert message="计费规则：1 个链接 1 月只要 1 块钱。" type="info" showIcon/>
     	       	<InputGroup>
-    	       		<Col xs={24} sm={24} md={12} lg={6}>
     	       			 <Search
                       placeholder="搜索"
-                      style={{ width: 200 }}
+                      style={{ width: 200,marginRight:"10px"}}
                       onSearch={value=>{this.onSearch(value)}}
                     />
-    	       		</Col>
-    	       		<Col xs={4}>
                   <PageCreateForm></PageCreateForm>
-    	       		</Col>
     	       	</InputGroup>
 
     	        <Block height={10}></Block>
-              <Table columns = { columns } dataSource = { this.props.home.pages } pagination={false}/> 
+              <Table scroll={{x:600}} columns = { columns } dataSource = { this.props.home.pages } pagination={false}/> 
               <Block height={20}></Block>
               <Row type="flex" justify="end">
                 <Pagination 
