@@ -80,24 +80,6 @@ class HomePage extends Component {
             	<a href={text} style={{display: "inline-block",maxWidth: "200px"}} target="_blank">{text}</a>
             )
         },{
-            title: '添加时间',
-            dataIndex: 'createdTime',
-            key: 'createdTime',
-            render: (createdTime) => {
-              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}</div>);
-            }
-
-        },{
-            title: '状态',
-            dataIndex: 'lastFetchTime',
-            key: 'lastFetchTime',
-            render: (text, record, index) => {
-              let a = moment(record.lastFetchTime).valueOf();
-              let b = new Date().valueOf();
-              return(<div>{ a>b ? <Badge status="success" text="已完成"/>: <Badge status="processing" text="等待"/>}</div>);
-            }
-
-        },{
           title: '标签',
           dataIndex: 'tags',
           key: 'tags',
@@ -111,6 +93,25 @@ class HomePage extends Component {
                   return tagElem;
                 }))
           }
+        },{
+            title: '状态',
+            dataIndex: 'lastFetchTime',
+            key: 'lastFetchTime',
+            render: (text, record, index) => {
+
+              let a = moment(record.lastFetchTime).valueOf();
+              let b = new Date().valueOf() - 86400000;
+              return(<div>{ a>b ? <Badge status="success" text="已完成"/>: <Badge status="processing" text="等待"/>}</div>);
+            }
+
+        },{
+            title: '添加时间',
+            dataIndex: 'createdTime',
+            key: 'createdTime',
+            render: (createdTime) => {
+              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}</div>);
+            }
+
         },{
             title: '操作',
             dataIndex: 'operation',

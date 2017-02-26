@@ -126,6 +126,7 @@ export default {
 
     },
     *isLogin(payload, { call, put, select }) {
+      
       const flag = !!cookie.getCookie('user');
       if (!flag) {
         Message.warning('您的登陆信息已过期，请重新登录！', 3);
@@ -141,6 +142,7 @@ export default {
           });
         }
       }
+      
     },
     *updateProfile({payload}, { call, put, select }) {
       const { data } = yield call(api.updateUserInfo, {nickname:payload.nickname,phone:payload.phone? +payload.phone: undefined,avatar:payload.avatar});
