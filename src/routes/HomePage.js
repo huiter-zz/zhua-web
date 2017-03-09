@@ -95,8 +95,8 @@ class HomePage extends Component {
           }
         },{
             title: '状态',
-            dataIndex: 'lastFetchTime',
-            key: 'lastFetchTime',
+            dataIndex: 'status',
+            key: 'status',
             render: (text, record, index) => {
 
               let a = moment(record.lastFetchTime).valueOf();
@@ -105,11 +105,11 @@ class HomePage extends Component {
             }
 
         },{
-            title: '添加时间',
-            dataIndex: 'createdTime',
-            key: 'createdTime',
-            render: (createdTime) => {
-              return(<div>{createdTime ? moment(createdTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}</div>);
+            title: '最近抓取时间',
+            dataIndex: 'lastFetchTime',
+            key: 'lastFetchTime',
+            render: (text, record, index) => {
+              return(<div>{record.lastFetchTime ? moment(record.lastFetchTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}</div>);
             }
 
         },{

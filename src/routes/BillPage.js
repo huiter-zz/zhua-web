@@ -11,29 +11,40 @@ function BillPage(props) {
 
     const columns = [{
             title: '时间',
-            dataIndex: 'createDate',
-        },{
-            title: '金额',
-            dataIndex: 'count',
+            dataIndex: 'createdTime',
+            key: 'createdTime',
             render: (text, record, index) => (
                 <div>
-                    <Screen></Screen><span style={{verticalAlign:"top",lineHeight:"50px"}}>{text}</span>
+                    {record.createdTime ? moment(record.createdTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}
                 </div>
             )
         },{
             title: '类型',
-            dataIndex: 'type',
+            render: (text, record, index) => {
+                if (record.data.by == 'register')
+                {
+                    return (<span>注册</span>)
+                }
+                else if (record.data.by == 'invitation')
+                {
+                    return (<span>邀请奖励</span>) 
+                }
+                else if (record.data.by == 'adjustment')
+                {
+                    if (record.data.type == 'cash')
+                    {
+                       return (<span>充值</span>) 
+                    }
+                    else{
+                        return (<span>赠送</span>)
+                    }
+                }
+            }
         },{
-            title: '变动',
-            dataIndex: 'operation',
-            render: ( text, record, index) => (
-                <div>
-                    <Button type="ghost" icon="inbox" style={{marginRight:"8px"}}></Button>
-                    <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
-                        <Button type="ghost" icon="delete"></Button>
-                    </Popconfirm>
-                </div>
-            )
+            title: '金额',
+            render: (text, record, index) => {
+                return (<span style={{color: "rgb(233, 37, 158)"}}>+ {record.data.amount}</span>)
+            }
         }];
   return (
     <div>
@@ -42,7 +53,7 @@ function BillPage(props) {
         </div>
         <Block height={20}></Block>
         <div style={{border:"1px solid #e9e9e9",padding:"20px",borderRadius:"4px"}}>
-          <p>您的账号余额为 <span style={{color:"rgb(233, 37, 158)"}}>¥15</span>，预计还可以使用 <span style={{color:"rgb(233, 37, 158)"}}>3</span> 天。</p>
+          <p>您的账号余额为 <span style={{color:"rgb(233, 37, 158)"}}>¥ {props.app.user.property.cash + props.app.user.property.gift}</span>，预计还可以使用 <span style={{color:"rgb(233, 37, 158)"}}>{Math.floor((props.app.user.property.cash + props.app.user.property.gift)/props.app.user.pageCount)}</span> 天。</p>
           <Block height={10}></Block>
           <Button type="primary" size="small" style={{borderColor:"rgb(233, 37, 158)",backgroundColor:"rgb(233, 37, 158)"}}>充值</Button>
         </div>

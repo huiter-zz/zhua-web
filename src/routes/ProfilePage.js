@@ -49,8 +49,8 @@ class ProfilePage extends Component {
     console.log('重新渲染');
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
+      labelCol: { xs: 24 ,sm:6,md:6,lg:6},
+      wrapperCol: { xs:24,sm: 14 ,md: 14,lg:14 },
     };
     return (
       <div>

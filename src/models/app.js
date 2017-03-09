@@ -27,13 +27,15 @@ export default {
   effects: {
     *register(payload, { call, put }) {
       yield put({ type: 'updateInfo' });
-      const { data } = yield call(api.register, {
+      const { data,err } = yield call(api.register, {
         nickname: payload.payload && payload.payload.nickname,
         email: payload.payload && payload.payload.email,
         password: payload.payload && payload.payload.password,
         referralsCode: payload.payload && payload.payload.referralsCode,
       });
 
+      console.log('1',data);
+      console.log('2',err);
       if (!data) {
         Message.warning('网络错误', 3);
         return;
@@ -45,10 +47,6 @@ export default {
           payload: {
             info: data
           }
-        });
-
-        yield put({
-          type: 'balances'
         });
 
         yield put(routerRedux.push('/home'));
@@ -69,26 +67,24 @@ export default {
     }, 
     *login(payload, { call, put }) {
       yield put({ type: 'updateInfo' });
-      const { data } = yield call(api.login, {
+      const { data ,err} = yield call(api.login, {
         email: payload.payload && payload.payload.email,
         password: payload.payload && payload.payload.password,
       });
+
+      console.log('1',data);
+      console.log('2',err);
 
       if (!data) {
         Message.warning('网络错误', 3);
         return;
       }
-
-      if (!data.errcode) {
+      else if (!data.errcode) {
         yield put({
           type: 'updateInfo',
           payload: {
             info: data
           }
-        });
-
-        yield put({
-          type: 'balances'
         });
 
         document.cookie = 'user=' + encodeURIComponent(JSON.stringify(data));
@@ -102,15 +98,6 @@ export default {
       }
 
       Message.warning('系统错误', 3);
-
-    },
-    *balances(payload, { call , put}) {
-      let balances = yield call(api.getBalances, {});
-
-      yield put({
-        type: 'updateBalances',
-        payload: balances
-      });
 
     },
     *logout(payload, { call , put}) {
@@ -169,13 +156,7 @@ export default {
       let user = action.payload && action.payload.info;
       document.cookie = 'user=' + encodeURIComponent(JSON.stringify(user));
       return {...state,user:user};
-    },
-    updateBalances(state, {payload}) {
-      console.log(payload);
-      let balances = payload.data;
-      return {...state,balances:balances};
-    },
-
+    }
   },
 
 }

@@ -9,6 +9,7 @@ import ProfilePage from './routes/ProfilePage';
 import BillPage from './routes/BillPage';
 import NotFoundPage from './routes/NotFoundPage';
 import PagePage from './routes/PagePage';
+import AdminPage from './routes/AdminPage';
 
 export default function({ history }) {
   return (
@@ -22,6 +23,7 @@ export default function({ history }) {
       <Route path="bill" component={BillPage} />
       <Route path="profile" component={ProfilePage} />
       <Route path="page" component={PagePage} />
+      <Route path="admin" component={AdminPage} />
       <Route path="/*" component={NotFoundPage} />
     </Route>
   </Router>

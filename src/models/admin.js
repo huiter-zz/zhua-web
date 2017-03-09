@@ -4,7 +4,7 @@ import * as api from '../services/base.js';
 
 export default {
 
-  namespace: 'bill',
+  namespace: 'admin',
 
   state: {
     pages: [],
@@ -17,7 +17,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(function (location) {
-        if (location.pathname.indexOf('bill')>-1) {
+        if (location.pathname.indexOf('admin')>-1) {
             dispatch({
                 type: 'query',
                 payload: location.query,
@@ -33,10 +33,9 @@ export default {
 
       var page = payload && payload.page;
       page = page? (+page) :1;
-      const pageSize = yield select(state => state.bill.pageSize);
+      const pageSize = yield select(state => state.admin.pageSize);
 
-      let obj = yield call(api.getUserLogList,{
-        type:'cash,gift',
+      let obj = yield call(api.getAdminUserList,{
         page: page,
         count: pageSize?pageSize:5,
       });
@@ -50,6 +49,16 @@ export default {
         });
       }
 
+    },
+    * adjust({ payload },{ call, put}){
+      let newPage = yield call(api.adminAdjust,payload);
+      /*
+      yield put({
+        type:'addLocalPage',
+        payload: newPage.data
+      })
+      */
+      message.success('操作成功');
     },
   },
 

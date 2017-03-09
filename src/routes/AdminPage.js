@@ -7,7 +7,9 @@ import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pa
 const Search = Input.Search;
 const InputGroup = Input.Group;
 
-class InvitePage extends Component {
+import AdjustForm from '../components/AdjustForm';
+
+class AdminPage extends Component {
 
     constructor(props) {
       super(props);
@@ -17,59 +19,62 @@ class InvitePage extends Component {
     };
 
     paginationOnChange(page){
-      this.props.history.replace('/invite?page='+page);
+      this.props.history.replace('/admin?page='+page);
     }
 
     paginationOnShowSizeChange(current, pageSize) {
       this.props.dispatch({
-        type: 'invite/updateLocalPagination',
+        type: 'admin/updateLocalPagination',
         payload: {pageSize:pageSize}
       })
-      this.props.history.replace('/invite?page=1');
+      this.props.history.replace('/admin?page=1');
     }
 
     render(){      
-            console.log(this.props.invite.pages);
+            console.log(this.props.admin.pages);
              const columns = [{
                     title: '用户',
                     dataIndex: 'nickname',
                     render: (text, record, index) => (
                         <div>
-                          <span>{text}</span>
+                           <span>{text}</span>
                         </div>
                     )
                 },{
-                    title: '收益',
-                    dataIndex: 'operation',
+                    title: '余额',
+                    dataIndex: 'a',
                     render: ( text, record, index) => {
-                      if (record.referrals.isPay) {
-                        return(<div><span style={{color:"rgb(233, 37, 158)"}}>+ {record.referrals.amount}</span></div>);
-                      } else {
-                        return(<div><span>-</span></div>);
-                      }
+                      console.log(record.property.cash + record.property.gift);
+                      return (<div>¥ {record.property.cash + record.property.gift}</div>)
                     }
+                },{
+                    title: '操作',
+                    dataIndex: 'operation',
+                    render: ( text, record, index) => (
+                        <div>
+                           <AdjustForm item={record}></AdjustForm>
+                        </div>
+                    )
                 }];
           return (
             <div>
                 <div>
-                  邀请码
+                  管理员
                 </div>
                   <Block height={20}></Block>
-                  <Alert message={"你的邀请码为 「" + this.props.app.user.invitationCode + "」"} type="info" showIcon/>
-                  <Block height={10}></Block>
-                  <Table columns = { columns } dataSource = { this.props.invite.pages } pagination={false}/> 
+                  <Table columns = { columns } dataSource = { this.props.admin.pages } pagination={false}/> 
                   <Block height={20}></Block>
                       <Row type="flex" justify="end">
                         <Pagination 
                           onChange={this.paginationOnChange} 
-                          total={this.props.invite.total} 
-                          showTotal={total => `共 ${this.props.invite.total} 项`} 
-                          current={this.props.invite.current} 
+                          total={this.props.admin.total} 
+                          showTotal={total => `共 ${this.props.admin.total} 项`} 
+                          current={this.props.admin.current} 
                           defaultCurrent={1} 
                           pageSizeOptions={['5','10','20']} 
                           showSizeChanger={true} 
                           onShowSizeChange={this.paginationOnShowSizeChange}
-                          defaultPageSize={+this.props.invite.pageSize}/>
+                          defaultPageSize={+this.props.admin.pageSize}/>
                       </Row>
             </div>
           );     
@@ -78,8 +83,8 @@ class InvitePage extends Component {
 
 }
 
-function mapStateToProps({ invite, app }) {
-  return { invite, app};
+function mapStateToProps({ admin, app }) {
+  return { admin, app};
 }
 
-export default connect(mapStateToProps)(InvitePage);
+export default connect(mapStateToProps)(AdminPage);

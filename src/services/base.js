@@ -156,7 +156,7 @@ export async function getSnapShots(params){
 }
 
 
-// 获取页面
+// 获取邀请用户
 export async function getInvitedUserList(params) {
   var url = BASE_URL + '/users/invitations';
   var _query = '';
@@ -172,7 +172,47 @@ export async function getInvitedUserList(params) {
   return request(url);
 }
 
+// 获取所有用户
+export async function getAdminUserList(params) {
+  var url = BASE_URL + '/admins/users/list';
+  var _query = '';
+  for (var k in params) {
+    if (params[k]) {
+      _query += ( k + '=' + params[k] + '&');
+    }
+  }
 
+  if (_query) {
+    url = url + '?' + _query;
+  }
+  return request(url);
+}
+
+// 充值赠送
+export async function adminAdjust(params) {
+  let url = BASE_URL + '/admins/adjustment';
+  let req = request(url,{
+    method: 'post',
+    body: JSON.stringify(params)
+  });
+  return req;
+}
+
+// 获取日志
+export async function getUserLogList(params) {
+  var url = BASE_URL + '/users/logs';
+  var _query = '';
+  for (var k in params) {
+    if (params[k]) {
+      _query += ( k + '=' + params[k] + '&');
+    }
+  }
+
+  if (_query) {
+    url = url + '?' + _query;
+  }
+  return request(url);
+}
 
 
 

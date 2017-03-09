@@ -12,12 +12,7 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-
   
-  if (response.status == 401) {
-    window.location = '/login';
-  }
-
   const error = new Error(response.statusText);
   error.statusCode = response.status;
   error.response = response;

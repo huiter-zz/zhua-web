@@ -53,7 +53,7 @@ const App = React.createClass({
                   <div style={{display:"table-cell",verticalAlign: "top",padding:"0px 10px"}}>
                     <Block height={5}></Block>
                     <h3 style={{height:"20px",lineHeight:"20px"}}>{this.props.app.user.nickname}</h3>
-                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ {this.props.app.balances.cash + this.props.app.balances.gift}</span>
+                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ {this.props.app.user.property? this.props.app.user.property.cash + this.props.app.user.property.gift:0}</span>
                   </div>
                 </div>
               </Board>
@@ -64,12 +64,13 @@ const App = React.createClass({
                   <Menu.Item key="profile" theme="light"><Link to="profile"><Icon type="user"/>账号</Link></Menu.Item>
                   <Menu.Item key="bill" theme="light"><Link to="bill"><Icon type="pay-circle"/>充值</Link></Menu.Item>
                   <Menu.Item key="invite" theme="light"><Link to="invite"><Icon type="qrcode"/>邀请码</Link></Menu.Item>
+                  {this.props.app.user.isAdmin?<Menu.Item key="admin" theme="light" ><Link to="admin"><Icon type="team"/>管理员</Link></Menu.Item>:''}
                 </Menu>
               </Board>
               <Block height={20}></Block>
               <Board>
                 <Menu mode="inline" theme="light" key="other">
-                  <Menu.Item key="invite" theme="light"><Link onClick={this.logout}>退出</Link></Menu.Item>
+                  <Menu.Item theme="light"><Link onClick={this.logout}>退出</Link></Menu.Item>
                 </Menu>
               </Board>
               <Block height={20}></Block>

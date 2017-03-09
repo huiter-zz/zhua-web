@@ -46,7 +46,7 @@ class PagePage extends Component {
         var url = this.props.page.snapshots[i].url;
         var createdTime = this.props.page.snapshots[i].createdTime;
         createdTime = createdTime ? moment(createdTime).format('YYYY-MM-DD'):'无效时间'
-        items.push(<Snapshot key={i} imageUrl={url} date={createdTime}/>);
+        items.unshift(<Snapshot key={i} imageUrl={url} date={createdTime}/>);
       }
 
       return(
