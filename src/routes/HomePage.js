@@ -5,6 +5,7 @@ import Block from '../components/Block';
 import Screen from '../components/Screen';
 import { Link } from 'dva/router';
 import { routerRedux } from 'dva/router';
+import { withRouter } from 'react-router'
 
 // 加载其它组件
 
@@ -37,7 +38,7 @@ class HomePage extends Component {
     }
 
     goPage(id){
-      this.props.history.push('/page?id='+id);
+      this.props.router.push('/page?id='+id);
     }
 
     editPage(item){
@@ -49,11 +50,11 @@ class HomePage extends Component {
         type: 'home/updateLocalKeyword',
         payload: {keyword:value}
       })
-      this.props.history.replace('/home?page=1');
+      this.props.router.replace('/home?page=1');
     }
 
     paginationOnChange(page){
-      this.props.history.replace('/home?page='+page);
+      this.props.router.replace('/home?page='+page);
     }
 
     paginationOnShowSizeChange(current, pageSize) {
@@ -61,7 +62,7 @@ class HomePage extends Component {
         type: 'home/updateLocalPagination',
         payload: {pageSize:pageSize}
       })
-      this.props.history.replace('/home?page=1');
+      this.props.router.replace('/home?page=1');
     }
 
     render(){
@@ -165,4 +166,4 @@ function mapStateToProps({ home }) {
   return { home };
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(withRouter(HomePage));
