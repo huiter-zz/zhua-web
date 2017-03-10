@@ -34,14 +34,7 @@ export default {
         referralsCode: payload.payload && payload.payload.referralsCode,
       });
 
-      console.log('1',data);
-      console.log('2',err);
-      if (!data) {
-        Message.warning('网络错误', 3);
-        return;
-      }
-
-      if (!data.errcode) {
+      if (data) {
         yield put({
           type: 'updateInfo',
           payload: {
@@ -51,19 +44,7 @@ export default {
 
         yield put(routerRedux.push('/home'));
         return;
-      }
-
-      if (data.errcode == 40001) {
-        Message.warning('邮件地址不合法', 3);
-        return;
-      }
-
-      if (data.errcode == 40002) {
-        Message.warning('密码长度必须大于 6 位并小于 50 位', 3);
-        return;
-      }
-      Message.warning('系统错误', 3);
-      
+      }      
     }, 
     *login(payload, { call, put }) {
       yield put({ type: 'updateInfo' });
@@ -72,14 +53,7 @@ export default {
         password: payload.payload && payload.payload.password,
       });
 
-      console.log('1',data);
-      console.log('2',err);
-
-      if (!data) {
-        Message.warning('网络错误', 3);
-        return;
-      }
-      else if (!data.errcode) {
+      if (data) {
         yield put({
           type: 'updateInfo',
           payload: {
@@ -91,14 +65,6 @@ export default {
         yield put(routerRedux.push('/home'));
         return;
       }
-
-      if (data.errcode == 40011) {
-        Message.warning('邮箱或密码错误', 3);
-        return;
-      }
-
-      Message.warning('系统错误', 3);
-
     },
     *logout(payload, { call , put}) {
       const { data } = yield call(api.logout, {});
@@ -114,8 +80,8 @@ export default {
     },
     *isLogin(payload, { call, put, select }) {
       
-      const flag = !!cookie.getCookie('user');
-      if (!flag) {
+      var user = cookie.getCookie('user');
+      if (!user || user === 'undefined') {
         Message.warning('您的登陆信息已过期，请重新登录！', 3);
         yield put(routerRedux.push('/login'));
       } else {
@@ -132,13 +98,9 @@ export default {
       
     },
     *updateProfile({payload}, { call, put, select }) {
-      const { data } = yield call(api.updateUserInfo, {nickname:payload.nickname,phone:payload.phone? +payload.phone: undefined,avatar:payload.avatar});
-      if (!data) {
-        Message.warning('网络错误', 3);
-        return;
-      }
+      const { data,err} = yield call(api.updateUserInfo, {nickname:payload.nickname,phone:payload.phone? +payload.phone: undefined,avatar:payload.avatar});
 
-      if (!data.errcode) {
+      if (data) {
         Message.success('修改成功', 3);
         yield put({
           type: 'updateInfo',

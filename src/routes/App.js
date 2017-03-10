@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Menu, Card,Breadcrumb, Icon, Row, Col, notification } from 'antd';
+import { Menu, Card,Breadcrumb, Icon, Row, Col, notification, Popconfirm} from 'antd';
 import { Router, Route, IndexRoute, Link, History} from 'dva/router';
 import Block from '../components/Block';
 import Board from '../components/Board';
@@ -69,8 +69,12 @@ const App = React.createClass({
               </Board>
               <Block height={20}></Block>
               <Board>
-                <Menu mode="inline" theme="light" key="other">
-                  <Menu.Item theme="light"><Link onClick={this.logout}>退出</Link></Menu.Item>
+                <Menu mode="inline" theme="light" key="other" selectedKeys="A">
+                  <Menu.Item theme="light">
+                    <Popconfirm placement="topLeft" title="确定退出" okText="退出"  onConfirm={this.logout}>
+                      <a>退出</a>
+                    </Popconfirm>
+                  </Menu.Item>
                 </Menu>
               </Board>
               <Block height={20}></Block>
