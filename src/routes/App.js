@@ -37,7 +37,6 @@ const App = React.createClass({
     });
   },
   render() {
-    console.log(this.props.app.balances);
     return (
       <div>
         <div className={styles.main_header}>
@@ -53,7 +52,7 @@ const App = React.createClass({
                   <div style={{display:"table-cell",verticalAlign: "top",padding:"0px 10px"}}>
                     <Block height={5}></Block>
                     <h3 style={{height:"20px",lineHeight:"20px"}}>{this.props.app.user.nickname}</h3>
-                    <span style={{height:"10px",lineHeight:"10px"}}>余额：¥ {this.props.app.user.property? this.props.app.user.property.cash + this.props.app.user.property.gift:0}</span>
+                    <span style={{height:"10px",lineHeight:"10px"}}>余额：<span style={{color:"rgb(233, 37, 158)"}}>¥ {this.props.app.user.property? this.props.app.user.property.cash + this.props.app.user.property.gift:0}</span></span>
                   </div>
                 </div>
               </Board>
@@ -69,7 +68,7 @@ const App = React.createClass({
               </Board>
               <Block height={20}></Block>
               <Board>
-                <Menu mode="inline" theme="light" key="other" selectedKeys="A">
+                <Menu mode="inline" theme="light" key="other" selectedKeys={["A"]}>
                   <Menu.Item theme="light">
                     <Popconfirm placement="topLeft" title="确定退出" okText="退出"  onConfirm={this.logout}>
                       <a>退出</a>
@@ -89,7 +88,7 @@ const App = React.createClass({
           </Row>
         </div>
         <div className={styles.main_footer}>
-           版权所有 © 2016 爪小组
+           版权所有 © 2017 爪小组
         </div>
       </div>
     );

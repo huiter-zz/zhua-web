@@ -16,7 +16,7 @@ const Register = (props)=>{
   }
 
   return (
-    <RegisterForm onSubmit={ handleSubmit.bind(this) }  />
+    <RegisterForm onSubmit={ handleSubmit.bind(this) }  code={props.location.query.code}/>
   );
 }
 

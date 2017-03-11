@@ -88,7 +88,7 @@ class RegisterForm extends Component {
                 <Form.Item>
                   {
                     getFieldDecorator('referralsCode', {
-                      initialValue: ''
+                      initialValue: this.props.code
                     })(<Input addonBefore={<Icon type="share-alt" />}  type="text" placeholder="邀请码" disabled={this.props.loading} />)
                   }
                 </Form.Item>

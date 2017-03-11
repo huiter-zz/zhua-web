@@ -6,6 +6,7 @@
   "dependencies": {
     "antd": "^2.8.0",
     "babel-plugin-import": "^1.1.0",
+    "copy-webpack-plugin": "^4.0.1",
     "dva": "^1.1.0",
     "g2": "^2.2.0",
     "react": "^15.3.2",

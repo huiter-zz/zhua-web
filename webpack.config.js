@@ -1,10 +1,29 @@
 const webpack = require('atool-build/lib/webpack');
+const copy = require('copy-webpack-plugin');
 
 module.exports = function(webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime');
   webpackConfig.babel.plugins.push(['import', {
      libraryName: 'antd', style: 'css'
   }]);
+
+  webpackConfig.plugins.push(
+    new webpack.ProvidePlugin({
+      _: 'underscore'
+    }),
+    new copy([{
+        from: __dirname + '/src/assets/img',
+        to: __dirname + '/dist/assets/img'
+    },{
+       from: __dirname + '/src/assets/js',
+       to: __dirname + '/dist/assets/js'
+    },{
+      from: __dirname + '/src/assets/css',
+       to: __dirname + '/dist/assets/css'
+    }],{
+        ignore:['*.DS_Store','*.log']
+    })
+  );
 
   // Support hmr
   if (env === 'development') {

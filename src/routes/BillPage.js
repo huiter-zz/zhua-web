@@ -53,7 +53,7 @@ function BillPage(props) {
         </div>
         <Block height={20}></Block>
         <div style={{border:"1px solid #e9e9e9",padding:"20px",borderRadius:"4px"}}>
-          <p>您的账号余额为 <span style={{color:"rgb(233, 37, 158)"}}>¥ {props.app.user.property.cash + props.app.user.property.gift}</span>，预计还可以使用 <span style={{color:"rgb(233, 37, 158)"}}>{Math.floor((props.app.user.property.cash + props.app.user.property.gift)/props.app.user.pageCount)}</span> 天。</p>
+          <p>您的账号余额为 <span style={{color:"rgb(233, 37, 158)"}}>¥ {props.app.user.property? props.app.user.property.cash + props.app.user.property.gift:0}</span>，预计还可以使用 <span style={{color:"rgb(233, 37, 158)"}}>{Math.floor((props.app.user.property.cash + props.app.user.property.gift)/props.app.user.pageCount)}</span> 天。</p>
           <Block height={10}></Block>
           <Button type="primary" size="small" style={{borderColor:"rgb(233, 37, 158)",backgroundColor:"rgb(233, 37, 158)"}}>充值</Button>
         </div>

@@ -15,7 +15,6 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(function (location) {
-        console.log(location);
         if (location.pathname.indexOf('/page')>-1) {
             dispatch({
                 type: 'query',

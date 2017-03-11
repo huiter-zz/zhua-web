@@ -16,7 +16,6 @@ function checkStatus(response) {
   const error = new Error(response.statusText);
   error.statusCode = response.status;
 
-
   return response.json().then((err) => {
     error.response = err;
 

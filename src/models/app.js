@@ -79,21 +79,27 @@ export default {
 
     },
     *isLogin(payload, { call, put, select }) {
+
+      try{
+        var user = JSON.parse(decodeURIComponent(cookie.getCookie('user')));
+      }
+      catch(e){
+        Message.warning('您的登陆信息已过期，请重新登录！', 3);
+        yield put(routerRedux.push('/login'));
+        return;
+      } 
       
-      var user = cookie.getCookie('user');
-      if (!user || user === 'undefined') {
+   
+      if (!user.email) {
         Message.warning('您的登陆信息已过期，请重新登录！', 3);
         yield put(routerRedux.push('/login'));
       } else {
-        let userInfo = cookie.getCookie('user');
-        if (typeof userInfo === 'string') {
-          yield put({
-            type: 'updateInfo',
-            payload: {
-              info: JSON.parse(decodeURIComponent(userInfo))
-            }
-          });
-        }
+        yield put({
+          type: 'updateInfo',
+          payload: {
+            info: user
+          }
+        });
       }
       
     },

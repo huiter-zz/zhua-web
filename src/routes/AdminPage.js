@@ -33,7 +33,7 @@ class AdminPage extends Component {
     render(){      
             console.log(this.props.admin.pages);
              const columns = [{
-                    title: '用户',
+                    title: '昵称',
                     dataIndex: 'nickname',
                     render: (text, record, index) => (
                         <div>
@@ -41,11 +41,32 @@ class AdminPage extends Component {
                         </div>
                     )
                 },{
-                    title: '余额',
-                    dataIndex: 'a',
-                    render: ( text, record, index) => {
+                    title: '邮箱',
+                    dataIndex: 'email',
+                    render: (text, record, index) => (
+                        <div>
+                           <span>{text}</span>
+                        </div>
+                    )
+                },{
+                    title: '总余额',
+                    render: ( record, index) => {
                       console.log(record.property.cash + record.property.gift);
-                      return (<div>¥ {record.property.cash + record.property.gift}</div>)
+                      return (<div><span style={{color:"rgb(233, 37, 158)"}}>¥ {record.property.cash + record.property.gift}</span></div>)
+                    }
+                },
+                {
+                    title: '现金',
+                    render: ( record, index) => {
+                      console.log(record.property.cash + record.property.gift);
+                      return (<div><span>{record.property.cash}</span></div>)
+                    }
+                },
+                {
+                    title: '赠送',
+                    render: ( record, index) => {
+                      console.log(record.property.cash + record.property.gift);
+                      return (<div><span>{record.property.gift}</span></div>)
                     }
                 },{
                     title: '操作',
