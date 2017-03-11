@@ -54,7 +54,7 @@ class ProfilePage extends Component {
     };
     return (
       <div>
-        <div>账号</div>
+        <div>帐号</div>
         <Block height={30}></Block>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item {...formItemLayout} label="头像">

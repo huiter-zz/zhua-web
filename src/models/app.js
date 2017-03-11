@@ -15,7 +15,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(function (location) {
-        if ((location.pathname.indexOf('login')>-1) || (location.pathname.indexOf('register')>-1)) {
+        if ((location.pathname.indexOf('login')>-1) || (location.pathname.indexOf('register')>-1)||(location.pathname.indexOf('welcome')>-1)||(location.pathname == '/')) {
           
         } else {
           dispatch({ type: 'isLogin', payload: {} });

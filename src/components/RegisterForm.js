@@ -47,7 +47,7 @@ class RegisterForm extends Component {
             <Block height={20}></Block>
             <div style={{maxWidth:"340px",border:"1px solid #e9e9e9",borderRadius:"4px",padding:"0px 22px 0px 22px",background:"white",margin:"0px auto 0px auto"}}>
               <div style={{ textAlign: 'center',margin:"20px 0px 20px 0px"}}>
-                <h1>🐙</h1>
+                <h1><Link to="/">🐙</Link></h1>
                 <h3 style={{ textAlign: 'center',margin:"10px 0px 10px 0px"}}>爪 - 页面时光机</h3>
               </div>
               <Form onSubmit={this.handleSubmit}>

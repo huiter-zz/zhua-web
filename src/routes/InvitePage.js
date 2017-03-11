@@ -55,9 +55,9 @@ class InvitePage extends Component {
                   邀请码
                 </div>
                   <Block height={20}></Block>
-                  <Alert message={"你的邀请码为 「" + this.props.app.user.invitationCode + "」"} type="info" showIcon/>
+                  <Alert message={"你的邀请码为 「" + this.props.app.user.invitationCode + "」。当你邀请的用户充值时，你将获得相同金额的赠送。"} type="info" showIcon/>
                   <Block height={10}></Block>
-                  <Table columns = { columns } dataSource = { this.props.invite.pages } pagination={false}/> 
+                  <Table rowKey={record => record.uid} columns = { columns } dataSource = { this.props.invite.pages } pagination={false}/> 
                   <Block height={20}></Block>
                       <Row type="flex" justify="end">
                         <Pagination 

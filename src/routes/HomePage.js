@@ -127,6 +127,7 @@ class HomePage extends Component {
             )
         }];
 
+
       return (
             <div>
             	页面库
@@ -142,7 +143,7 @@ class HomePage extends Component {
     	       	</InputGroup>
 
     	        <Block height={10}></Block>
-              <Table scroll={{x:600}} columns = { columns } dataSource = { this.props.home.pages } pagination={false}/> 
+              <Table rowKey={record => record.id}  scroll={{x:600}} columns = { columns } dataSource = { this.props.home.pages } pagination={false}/> 
               <Block height={20}></Block>
               <Row type="flex" justify="end">
                 <Pagination 

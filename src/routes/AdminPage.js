@@ -83,7 +83,7 @@ class AdminPage extends Component {
                   管理员
                 </div>
                   <Block height={20}></Block>
-                  <Table columns = { columns } dataSource = { this.props.admin.pages } pagination={false}/> 
+                  <Table rowKey={record => record.uid} columns = { columns } dataSource = { this.props.admin.pages } pagination={false}/> 
                   <Block height={20}></Block>
                       <Row type="flex" justify="end">
                         <Pagination 

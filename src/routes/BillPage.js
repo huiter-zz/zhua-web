@@ -53,13 +53,13 @@ function BillPage(props) {
         </div>
         <Block height={20}></Block>
         <div style={{border:"1px solid #e9e9e9",padding:"20px",borderRadius:"4px"}}>
-          <p>您的账号余额为 <span style={{color:"rgb(233, 37, 158)"}}>¥ {props.app.user.property? props.app.user.property.cash + props.app.user.property.gift:0}</span>，预计还可以使用 <span style={{color:"rgb(233, 37, 158)"}}>{Math.floor((props.app.user.property.cash + props.app.user.property.gift)/props.app.user.pageCount)}</span> 天。</p>
+          <p>您的余额为 <span style={{color:"rgb(233, 37, 158)"}}>¥ {props.app.user.property? props.app.user.property.cash + props.app.user.property.gift:0}</span>，预计还可以使用 <span style={{color:"rgb(233, 37, 158)"}}>{Math.floor((props.app.user.property.cash + props.app.user.property.gift)/props.app.user.pageCount)}</span> 天。</p>
           <Block height={10}></Block>
           <Button type="primary" size="small" style={{borderColor:"rgb(233, 37, 158)",backgroundColor:"rgb(233, 37, 158)"}}>充值</Button>
         </div>
         <Block height={20}></Block>
         <Block height={10}></Block>
-        <Table columns = { columns } dataSource = { props.bill.pages } pagination={false}/> 
+        <Table rowKey={record => record.id} columns = { columns } dataSource = { props.bill.pages } pagination={false}/> 
         <Block height={20}></Block>
         <Row type="flex" justify="end">
           <Pagination total={props.bill.total} showTotal={total => `共 ${props.bill.total} 项`} current={props.bill.current} pageSize={5}  defaultCurrent={1}/>
