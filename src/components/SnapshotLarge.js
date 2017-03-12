@@ -10,7 +10,7 @@ class SnapshotLarge extends Component {
 		super(props);
 		this.state = {
 			visible : false,
-			imageUrl : 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png'
+			imageUrl : 'https://omojllq5i.qnssl.com/default/snapshot.png'
 		}
 
 		this.showModal = this.showModal.bind(this);
