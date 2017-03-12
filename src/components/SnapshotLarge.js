@@ -31,7 +31,7 @@ class SnapshotLarge extends Component {
 
 	componentDidMount() {
 		this.setState({
-	      imageUrl: this.props.imageUrl,
+	      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
 	    });
 	}
 
@@ -40,7 +40,7 @@ class SnapshotLarge extends Component {
 			this.setState({
 		      imageUrl: 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png',
 		    });
-		    let url = nextProps.imageUrl;
+		    let url = nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
 		    let that = this;
 		    setTimeout(()=>{
 			    that.setState({
@@ -54,8 +54,7 @@ class SnapshotLarge extends Component {
 
 	render(){
 		return(
-	    	<Col style={{marginBottom:"30px",textAlign:"center"}} span={24}>
-
+	    	<div style={{marginBottom:"30px",textAlign:"center"}}>
 		    	<div style={{backgroundColor:"white",maxWidth:"650px",maxHeight:"490px",overflow:"scroll",display:"inline-block",margin:"0 auto",border:"2px solid #e1e1e1"}}>
 		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageView2/2/w/650'} style={{width:"100%"}}/></a>
 		      	</div>
@@ -66,7 +65,7 @@ class SnapshotLarge extends Component {
 		        >
 		        	<img src={this.state.imageUrl} style={{width:"100%",height:"auto",overflow:"scroll"}}/>
 		        </Modal>
-	      	</Col>
+	      	</div>
 	    );	
 	}
 

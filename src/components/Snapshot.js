@@ -31,7 +31,7 @@ class Snapshot extends Component {
 
 	componentDidMount() {
 		this.setState({
-	      imageUrl: this.props.imageUrl,
+	      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
 	    });
 	}
 
@@ -40,7 +40,7 @@ class Snapshot extends Component {
 			this.setState({
 		      imageUrl: 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png',
 		    });
-		    let url = nextProps.imageUrl;
+		    let url = nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
 		    let that = this;
 		    setTimeout(()=>{
 			    that.setState({

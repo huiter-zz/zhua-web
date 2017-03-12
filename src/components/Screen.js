@@ -12,7 +12,7 @@ class Screen extends Component {
 		super(props);
 		this.state = {
 			visible : false,
-			imageUrl: 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png'
+			imageUrl: 'https://omojllq5i.qnssl.com/default/snapshot.png'
 		}
 
 		this.showModal = this.showModal.bind(this);
@@ -33,16 +33,16 @@ class Screen extends Component {
 
 	componentDidMount() {
 		this.setState({
-	      imageUrl: this.props.imageUrl,
+	      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
 	    });
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.imageUrl != this.props.imageUrl) {
 			this.setState({
-		      imageUrl: 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png',
+		      imageUrl: 'https://omojllq5i.qnssl.com/default/snapshot.png',
 		    });
-		    let url = nextProps.imageUrl;
+		    let url = nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
 		    let that = this;
 		    setTimeout(()=>{
 			    that.setState({

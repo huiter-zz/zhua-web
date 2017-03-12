@@ -172,9 +172,13 @@ class IntroPage extends Component {
 
       return (
         <div>
-          <BackTop visibilityHeight={200}/>
+          <Row>
+            <Col xs={0} sm={24} md={24} lg={24}>
+              <BackTop visibilityHeight={200}/>
+            </Col>
+          </Row>
           <Layout className="layout" style={{background: "#108ee9",height:"100%"}}>
-            <Header style={{height:"50px",lineHeight:"50px",background:"#fff",textAlign: "center"}}>
+            <Header style={{height:"50px",lineHeight:"50px",background:"#fff",textAlign: "center",padding:"0px 0px"}}>
               <Row>
                 <Col span={12} offset={6}>
                   <div style={{display:"inline-block",width:120,height:"30px",background: "#eaeaea",borderRadius:"6px",textAlign:"center",lineHeight:"30px",fontSize:"12px",margin:"10px auto"}}><span>🐙</span><span style={{marginLeft:"10px"}}>爪-页面时光机</span></div>
@@ -182,7 +186,7 @@ class IntroPage extends Component {
                 <Col span={6}>
                   <Affix offsetTop={0} onChange={affixed => console.log(affixed)}>
                     <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
-                      <img style={{float:"right",margin:"10px 0px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="28px" src={"/assets/img/huiter.jpg"} />
+                      <img style={{float:"right",margin:"10px 20px 20px 0px",borderRadius:"50%",border:"1px solid #fff"}} width="28px" src={"/assets/img/huiter.jpg"} />
                     </Popover>
                     <Button style={{float:"right",marginTop:10,marginRight:"20px",border:"1px solid #fff"}} type="primary" onClick={()=>{this.props.router.push('/login');}}>开始体验</Button>
                   </Affix>
@@ -192,18 +196,18 @@ class IntroPage extends Component {
             <Content>                
                 <div>
                   <Block height={100}></Block> 
-                  <h1 style={{textAlign:"center",color:"white"}}>页面时光机，不错过每一天。</h1>
-                  <p style={{margin:"10px auto",width:650,textAlign:"center",color:"white"}}>爪是一款全新的 Web 页面抓取工具，它采用浏览器模拟浏览技术，自动对内容进行图片化存储，帮你记录页面每一天的状态。无论你是做竞品跟踪的产品狗，还是一个乐于观察的互联网爱好者，这个工具都会成为你的好帮手。</p>
-                  <Block height={20}></Block>  	 
+                  <h1 style={{textAlign:"center",color:"white"}}>页面时光机，不错过每一天。</h1> 
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}>
-                        <Carousel autoplay effect="fade">
-                          <Row type="flex" justify="center"><SnapshotLarge key={1} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170309.png"} date={"2017-03-09"}/></Row>
-                          <Row type="flex" justify="center"><SnapshotLarge key={2} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170307.png"} date={"2017-03-03"}/></Row>
-                          <Row type="flex" justify="center"><SnapshotLarge key={3} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170302.png"} date={"2017-03-02"}/></Row>
-                          <Row type="flex" justify="center"><SnapshotLarge key={4} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170301.png"} date={"2017-03-01"}/></Row>
-                          <Row type="flex" justify="center"><SnapshotLarge key={5} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170228.png"} date={"2017-02-18"}/></Row>
-                          <Row type="flex" justify="center"><SnapshotLarge key={6} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170215.png"} date={"2017-02-14"}/></Row>
+                        <p style={{margin:"10px auto",maxWidth:650,textAlign:"center",color:"white"}}>爪是一款全新的 Web 页面抓取工具，它采用浏览器模拟浏览技术，自动对内容进行图片化存储，帮你记录页面每一天的状态。无论你是做竞品跟踪的产品狗，还是一个乐于观察的互联网爱好者，这个工具都会成为你的好帮手。</p>
+                        <Block height={20}></Block>   
+                        <Carousel autoplay>
+                          <div><SnapshotLarge key={1} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170309.png"} date={"2017-03-09"}/></div>
+                          <div><SnapshotLarge key={2} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170307.png"} date={"2017-03-03"}/></div>
+                          <div><SnapshotLarge key={3} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170302.png"} date={"2017-03-02"}/></div>
+                          <div><SnapshotLarge key={4} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170301.png"} date={"2017-03-01"}/></div>
+                          <div><SnapshotLarge key={5} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170228.png"} date={"2017-02-18"}/></div>
+                          <div><SnapshotLarge key={6} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170215.png"} date={"2017-02-14"}/></div>
                         </Carousel>
                     </Col>
                   </Row>
@@ -216,17 +220,23 @@ class IntroPage extends Component {
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
                         <Block height={10}></Block>
-                        <Table rowKey={record => record.id} style={{backgroundColor:"white",padding:"8px 8px",borderRadius:"0px"}} scroll={{x:600}} columns = { columns } dataSource = { data } pagination={false}/> 
+                        <Table rowKey={record => record.id} style={{backgroundColor:"white",border:"2px solid #e1e1e1",padding:"8px 8px",borderRadius:"0px"}} scroll={{x:600}} columns = { columns } dataSource = { data } pagination={false}/> 
                         <Block height={20}></Block>
                     </Col>
                   </Row>
                   <Block height={60}></Block> 
                 </div>
-                <div style={{width:650,margin:"0px auto",padding:"10px 0px 15px 0px",backgroundColor:"#ffffff",textAlign:"center"}}>
-                  <p style={{textAlign:"center",color:"rgb(0, 0, 0, 0.65)",padding:"10px",fontSize:"16px"}}>现在新用户注册，立送 <span style={{color:"rgb(233, 37, 158)"}}>50 元</span> 体验金。</p>
-                  <Button style={{margin:"10px 0px 0px"}} type="primary" onClick={()=>{this.props.router.push('/register')}}>立即注册</Button>  
+                <div>
+                  <Row type="flex" justify="space-around">
+                    <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
+                        <div style={{margin:"0px auto",padding:"10px 0px 15px 0px",backgroundColor:"#ffffff",textAlign:"center",border:"2px solid #e1e1e1"}}>
+                          <p style={{textAlign:"center",color:"rgb(0, 0, 0, 0.65)",padding:"10px",fontSize:"16px"}}>现在新用户注册，立送 <span style={{color:"rgb(233, 37, 158)"}}>50 元</span> 体验金。</p>
+                          <Button style={{margin:"10px 0px 0px"}} type="primary" onClick={()=>{this.props.router.push('/register')}}>立即注册</Button>  
+                        </div>
+                        <Block height={100}></Block>  
+                    </Col>
+                  </Row>
                 </div>
-                <Block height={100}></Block>  
             </Content>
             <Footer>
               <p style={{ textAlign:'center',color:"white"}}>
