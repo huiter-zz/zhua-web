@@ -58,7 +58,7 @@ class Screen extends Component {
 	    return(
 	    	<div>
 		    	<div style={{boxSizing:"content-box",width:"50px",height:"50px",overflow:"hidden",display:"inline-block",marginRight:"8px",border:"2px solid #e1e1e1"}}>
-		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageView2/2/w/120'} style={{width:"50px",height:"auto",overflow:"hidden"}}/></a>
+		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageMogr2/thumbnail/100x/crop/x100'} style={{width:"50px",height:"auto",overflow:"hidden"}}/></a>
 		      	</div>
 			    <Modal onCancel={this.handleCancel} title={this.props.title} width={800} visible={this.state.visible} footer={
 			            <Button key="back" type="ghost" size="large" onClick={this.handleCancel}>关闭</Button>

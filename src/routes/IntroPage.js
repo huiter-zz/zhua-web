@@ -199,7 +199,7 @@ class IntroPage extends Component {
                   <h1 style={{textAlign:"center",color:"white"}}>页面时光机，不错过每一天。</h1> 
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}>
-                        <p style={{margin:"10px auto",maxWidth:650,textAlign:"center",color:"white"}}>爪是一款全新的 Web 页面抓取工具，它采用浏览器模拟浏览技术，自动对内容进行图片化存储，帮你记录页面每一天的状态。无论你是做竞品跟踪的产品狗，还是一个乐于观察的互联网爱好者，这个工具都会成为你的好帮手。</p>
+                        <p style={{margin:"10px auto",maxWidth:650,textAlign:"center",color:"white"}}>爪是一款全新的 Web 页面抓取工具，它采用浏览器模拟访问技术，自动以图片的方式帮你记录页面每一天的状态。无论你是做竞品跟踪的产品经理，还是一个乐于观察的互联网爱好者，这个工具都会成为你的好帮手。</p>
                         <Block height={20}></Block>   
                         <Carousel autoplay>
                           <div><SnapshotLarge key={1} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170309.png"} date={"2017-03-09"}/></div>
@@ -220,7 +220,7 @@ class IntroPage extends Component {
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
                         <Block height={10}></Block>
-                        <Table rowKey={record => record.id} style={{backgroundColor:"white",border:"2px solid #e1e1e1",padding:"8px 8px",borderRadius:"0px"}} scroll={{x:600}} columns = { columns } dataSource = { data } pagination={false}/> 
+                        <Table rowKey={record => record.id} style={{backgroundColor:"white",padding:"8px 8px",borderRadius:"0px"}} scroll={{x:600}} columns = { columns } dataSource = { data } pagination={false}/> 
                         <Block height={20}></Block>
                     </Col>
                   </Row>
@@ -229,7 +229,7 @@ class IntroPage extends Component {
                 <div>
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
-                        <div style={{margin:"0px auto",padding:"10px 0px 15px 0px",backgroundColor:"#ffffff",textAlign:"center",border:"2px solid #e1e1e1"}}>
+                        <div style={{margin:"0px auto",padding:"10px 0px 15px 0px",backgroundColor:"#ffffff",textAlign:"center"}}>
                           <p style={{textAlign:"center",color:"rgb(0, 0, 0, 0.65)",padding:"10px",fontSize:"16px"}}>现在新用户注册，立送 <span style={{color:"rgb(233, 37, 158)"}}>50 元</span> 体验金。</p>
                           <Button style={{margin:"10px 0px 0px"}} type="primary" onClick={()=>{this.props.router.push('/register')}}>立即注册</Button>  
                         </div>

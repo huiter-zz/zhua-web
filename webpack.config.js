@@ -14,12 +14,6 @@ module.exports = function(webpackConfig, env) {
     new copy([{
         from: __dirname + '/src/assets/img',
         to: __dirname + '/dist/assets/img'
-    },{
-       from: __dirname + '/src/assets/js',
-       to: __dirname + '/dist/assets/js'
-    },{
-      from: __dirname + '/src/assets/css',
-       to: __dirname + '/dist/assets/css'
     }],{
         ignore:['*.DS_Store','*.log']
     })

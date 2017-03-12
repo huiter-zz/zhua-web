@@ -55,8 +55,8 @@ class SnapshotLarge extends Component {
 	render(){
 		return(
 	    	<div style={{marginBottom:"30px",textAlign:"center"}}>
-		    	<div style={{backgroundColor:"white",maxWidth:"650px",maxHeight:"490px",overflow:"scroll",display:"inline-block",margin:"0 auto",border:"2px solid #e1e1e1"}}>
-		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageView2/2/w/650'} style={{width:"100%"}}/></a>
+		    	<div style={{backgroundColor:"white",maxWidth:"650px",maxHeight:"490px",display:"inline-block",margin:"0 auto"}}>
+		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageMogr2/thumbnail/650x/crop/x490'} style={{width:"100%"}}/></a>
 		      	</div>
 		      	<h4 style={{textAlign:"center",color:"white"}}>{this.props.date}</h4>
 		      	<Modal onCancel={this.handleCancel} title={this.props.date} width={800} visible={this.state.visible} footer={
