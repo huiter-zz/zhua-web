@@ -28,7 +28,7 @@ module.exports = function(webpackConfig, env) {
   }
   
   //设置绝对路径
-  webpackConfig.out.publicPath="/";
+  webpackConfig.out = {publicPath:"/"};
 
   // Don't extract common.js and common.css
   webpackConfig.plugins = webpackConfig.plugins.filter(function(plugin) {
