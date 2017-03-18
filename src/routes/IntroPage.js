@@ -34,33 +34,42 @@ class IntroPage extends Component {
             </Col>
           </Row>
           <Layout className="layout" style={{background: "#108ee9",height:"100%"}}>
-            <Header style={{height:"60px",lineHeight:"60px",background:"#fff",textAlign: "center",padding:"0px 0px"}}>
+            <Header style={{height:"50px",lineHeight:"50px",background:"#fff",textAlign: "center",padding:"0px 0px"}}>
               <Row>
                 <Col span={10} offset={7}>
-                  <div style={{display:"inline-block",width:180,height:"30px",background: "#eaeaea",borderRadius:"6px",textAlign:"center",lineHeight:"30px",fontSize:"15px",margin:"15px auto"}}><span>🐙</span><span style={{marginLeft:"10px"}}>爪-页面时光机</span></div>
+                  <div style={{display:"inline-block",width:180,height:"30px",borderRadius:"6px",textAlign:"center",lineHeight:"30px",fontSize:"14px",margin:"10px auto"}}><span>🐙</span><span style={{marginLeft:"10px"}}>爪-网页时光机</span></div>
                 </Col>
                 <Col xs={7} sm={7} md={7} lg={7}>
-                    <Affix offsetTop={80} onChange={affixed => console.log(affixed)}>
+                    <Affix offsetTop={0} onChange={affixed => console.log(affixed)}>
                       <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
-                        <img style={{float:"right",margin:"15px 20px 20px 0px",borderRadius:"50%",border:"1px solid #fff"}} width="28px" src={"/assets/img/huiter.jpg"} />
+                        <img style={{float:"right",margin:"10px 20px 20px 0px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
                       </Popover>
                     </Affix>
-                    <Button style={{float:"right",marginTop:15,marginRight:"20px",border:"1px solid #fff"}} type="primary" onClick={()=>{this.props.router.push('/login');}}>开始体验</Button>
                 </Col>
               </Row>
             </Header>
-            <Content>                
+            <Content> 
                 <div>
-                  <Block height={150}></Block> 
+                  <Block height={80}></Block> 
+                  <h1 style={{textAlign:"center",color:"white"}}>产品介绍</h1> 
+                  <Block height={20}></Block> 
                   <Row type="flex" justify="space-around">
-                    <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 600}}>
-                      <p style={{margin:"0px auto",color:"white",fontSize:"16px"}}>
-                      <i className="fa fa-quote-left" aria-hidden="true" style={{textIndent:"32px"}}></i><span style={{padding:"0 5px"}}>🐙</span>爪是一款全新的页面抓取工具，它采用浏览器<span style={{padding:"0 5px"}}>👁</span>模拟访问技术，自动<span style={{padding:"0 5px"}}>🤖</span>以图片的方式帮你记录<span style={{padding:"0 5px"}}>💾</span>页面每一天<span style={{padding:"0 5px"}}>📆</span>的状态。无论你是做竞品分析的产品经理<span style={{padding:"0 5px"}}>🐶</span>，还是一个乐于观察的互联网爱好者<span style={{padding:"0 5px"}}>👦</span>，这个工具都会成为你的好帮手<span style={{padding:"0 5px"}}>🔨</span>。 <i className="fa fa-quote-right" aria-hidden="true"></i>
-                      </p>
+                    <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
+                        <p style={{margin:"0px auto",padding:"0px 50px",color:"white",fontSize:"14px"}}>
+                          <i className="fa fa-quote-left" aria-hidden="true" style={{textIndent:"28px"}}></i><span style={{padding:"0 5px"}}>🐙</span>爪是一款网页图片化归档工具，可以记录<span style={{padding:"0 5px"}}>💾</span>页面每一天<span style={{padding:"0 5px"}}>📆</span>的状态。无论你是做竞品分析的产品经理<span style={{padding:"0 5px"}}>🐶</span>，还是一个乐于观察的互联网爱好者<span style={{padding:"0 5px"}}>👦</span>，这个工具都会成为你的好帮手<span style={{padding:"0 5px"}}>🔨</span>。<i className="fa fa-quote-right" aria-hidden="true"></i>
+                        </p>
+                        <div style={{margin:"0px auto",padding:"0px 0px 15px 0px",textAlign:"center"}}>
+                            <h1 style={{textAlign:"center",color:"white",fontSize:"40px"}}>👇</h1>
+                            <Button style={{margin:"20px 0px 0px",border:"2px solid #fff"}} size="large" type="primary" onClick={()=>{this.props.router.push('/login')}}>开始体验</Button>  
+                        </div>
+                        <img width="640px" src={"https://omojllq5i.qnssl.com/home.png"} />
                     </Col>
                   </Row>
-
-                  <Block height={120}></Block>  
+                </div>               
+                <div>
+                  <Block height={60}></Block>  
+                  <h1 style={{textAlign:"center",color:"white"}}>典型案例</h1> 
+                  <Block height={60}></Block>  
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}> 
                         <Carousel autoplay>
@@ -75,8 +84,7 @@ class IntroPage extends Component {
                   <h1 style={{textAlign:"center",color:"white"}}>我们跟踪了「锤子科技」的历次改版。</h1> 
                 </div>
                 <div>
-                  <Block height={150}></Block> 
-                  <Block height={20}></Block>  
+                  <Block height={100}></Block>  
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}> 
                         <Carousel>
@@ -89,18 +97,19 @@ class IntroPage extends Component {
                   <h1 style={{textAlign:"center",color:"white"}}>我们跟踪了「链家网」的每日带看。</h1> 
                 </div>
                 <div>
-                  
-                  <Block height={150}></Block>   
+                  <Block height={150}></Block>  
+                  <h1 style={{textAlign:"center",color:"white"}}>计费规则</h1> 
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
+                        <Block height={20}></Block> 
+                        <p style={{textAlign:"center",color:"white",fontSize:"14px"}}>
+                          我们按照页面的数量进行计费，一个页面，一个月，一块钱。
+                        </p>
                         <div style={{margin:"0px auto",padding:"0px 0px 15px 0px",textAlign:"center"}}>
-                            <h1 style={{textAlign:"center",color:"white",fontSize:"40px"}}>👇</h1>
-                            <h1 style={{textAlign:"center",color:"white"}}><i className="fa fa-quote-left"></i> 页面时光机，不错过每一天 <i className="fa fa-quote-right"></i></h1>
-                            <Button style={{margin:"20px 0px 0px",border:"2px solid #fff"}} size="large" type="primary" onClick={()=>{this.props.router.push('/login')}}>开始体验</Button>  
+                            <h1 style={{textAlign:"center",color:"white",fontSize:"40px"}}>💰</h1>
+                            <Button style={{margin:"20px 0px 0px",border:"2px solid #fff"}} size="large" type="primary" onClick={()=>{this.props.router.push('/register')}}>现在注册立送 50 元</Button>  
                         </div>
-                        <img width="640px" src={"https://omojllq5i.qnssl.com/home.png"} />
-  
-                        <Block height={100}></Block>  
+                        <Block height={60}></Block>  
                     </Col>
                   </Row>
                 </div>
