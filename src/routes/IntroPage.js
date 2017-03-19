@@ -54,15 +54,15 @@ class IntroPage extends Component {
                   <h1 style={{textAlign:"center",color:"white"}}>产品介绍</h1> 
                   <Block height={20}></Block> 
                   <Row type="flex" justify="space-around">
-                    <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
-                        <p style={{margin:"0px auto",padding:"0px 50px",color:"white",fontSize:"14px"}}>
+                    <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 600}}>
+                        <p style={{margin:"0px auto",padding:"0px 20px",color:"white",fontSize:"14px"}}>
                           <i className="fa fa-quote-left" aria-hidden="true" style={{textIndent:"28px"}}></i><span style={{padding:"0 5px"}}>🐙</span>爪是一款网页图片化归档工具，可以记录<span style={{padding:"0 5px"}}>💾</span>页面每一天<span style={{padding:"0 5px"}}>📆</span>的状态。无论你是做竞品分析的产品经理<span style={{padding:"0 5px"}}>🐶</span>，还是一个乐于观察的互联网爱好者<span style={{padding:"0 5px"}}>👦</span>，这个工具都会成为你的好帮手<span style={{padding:"0 5px"}}>🔨</span>。<i className="fa fa-quote-right" aria-hidden="true"></i>
                         </p>
                         <div style={{margin:"0px auto",padding:"0px 0px 15px 0px",textAlign:"center"}}>
                             <h1 style={{textAlign:"center",color:"white",fontSize:"40px"}}>👇</h1>
                             <Button style={{margin:"20px 0px 0px",border:"2px solid #fff"}} size="large" type="primary" onClick={()=>{this.props.router.push('/login')}}>开始体验</Button>  
                         </div>
-                        <img width="640px" src={"https://omojllq5i.qnssl.com/home.png"} />
+                        <img style={{width:"100%"}} src={"https://omojllq5i.qnssl.com/home.png"} />
                     </Col>
                   </Row>
                 </div>               
