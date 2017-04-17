@@ -8,7 +8,6 @@
     "babel-plugin-import": "^1.1.0",
     "copy-webpack-plugin": "^4.0.1",
     "dva": "^1.1.0",
-    "g2": "^2.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "underscore": "^1.8.3"

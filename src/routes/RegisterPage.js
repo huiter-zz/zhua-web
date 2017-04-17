@@ -24,11 +24,11 @@ const Register = (props)=>{
   );
   return (
   	    <div style={{height:"100%"}}>
-	        <Button style={{position:"fixed",right:"0",margin:"10px 20px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{props.router.push('/')}}>返回主页</Button>  
 
 	          <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
-	            <img style={{position:"fixed",right:"0",margin:"10px 120px 20px 0px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
+	            <img style={{position:"fixed",right:"0",margin:"20px 20px 20px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
 	          </Popover>
+          <Button style={{position:"fixed",right:"0",margin:"20px 70px 0px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{props.router.push('/')}}>返回主页</Button>  
 
 	    	<RegisterForm onSubmit={ handleSubmit.bind(this) }  code={props.location.query.code}/>
 	    </div>

@@ -39,8 +39,7 @@ module.exports = function(webpackConfig, env) {
     'redux': 'window.Redux',
     'react-redux': 'window.ReactRedux',
     'antd': 'window.antd',
-    'moment': 'window.moment',
-    'g2': 'window.g2'
+    'moment': 'window.moment'
   }
 
   // Don't extract common.js and common.css

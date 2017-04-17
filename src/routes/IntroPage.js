@@ -34,31 +34,41 @@ class IntroPage extends Component {
             </Col>
           </Row>
           <Layout className="layout" style={{background: "#108ee9",height:"100%"}}>
-            <Header style={{height:"50px",lineHeight:"50px",background:"#fff",textAlign: "center",padding:"0px 0px"}}>
+            <Header style={{display:"none",height:"50px",lineHeight:"50px",background:"#fff",textAlign: "center",padding:"0px 0px"}}>
               <Row>
                 <Col span={10} offset={7}>
-                  <div style={{display:"inline-block",width:180,height:"30px",borderRadius:"6px",textAlign:"center",lineHeight:"30px",fontSize:"14px",margin:"10px auto"}}><span>🐙</span><span style={{marginLeft:"10px"}}>爪-网页时光机</span></div>
+                  <div style={{display:"none",width:180,height:"30px",borderRadius:"6px",textAlign:"center",lineHeight:"30px",fontSize:"14px",margin:"10px auto"}}><span>🐙</span><span style={{marginLeft:"10px"}}>爪-网页时光机</span></div>
                 </Col>
                 <Col xs={7} sm={7} md={7} lg={7}>
+
+
                     <Affix offsetTop={0} onChange={affixed => console.log(affixed)}>
                       <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
                         <img style={{float:"right",margin:"10px 20px 20px 0px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
                       </Popover>
+                      <Button style={{float:"right",margin:"10px 20px 20px 0px",border:"2px solid #fff"}} type="primary"  onClick={()=>{this.props.router.push('/login')}}>登录</Button> 
                     </Affix>
                 </Col>
               </Row>
             </Header>
             <Content> 
                 <div>
+                  <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
+                    <img style={{position:"fixed",right:"0",margin:"20px 20px 20px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
+                  </Popover>
+                  <Button style={{position:"fixed",right:"0",margin:"20px 70px 0px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{this.props.router.push('/login')}}>登录系统</Button>  
+
                   <Block height={80}></Block> 
-                  <h1 style={{textAlign:"center",color:"white"}}>产品介绍</h1> 
+                  <h1 style={{textAlign:"center",color:"white",fontSize:"60px"}}>🐙</h1> 
+                  <h1 style={{textAlign:"center",color:"white"}}>爪</h1> 
                   <Block height={20}></Block> 
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 600}}>
                         <p style={{margin:"0px auto",padding:"0px 20px",color:"white",fontSize:"14px"}}>
-                          <i className="fa fa-quote-left" aria-hidden="true" style={{textIndent:"28px"}}></i><span style={{padding:"0 5px"}}>🐙</span>爪是一款网页图片化归档工具，可以记录<span style={{padding:"0 5px"}}>💾</span>页面每一天<span style={{padding:"0 5px"}}>📆</span>的状态。无论你是做竞品分析的产品经理<span style={{padding:"0 5px"}}>🐶</span>，还是一个乐于观察的互联网爱好者<span style={{padding:"0 5px"}}>👦</span>，这个工具都会成为你的好帮手<span style={{padding:"0 5px"}}>🔨</span>。<i className="fa fa-quote-right" aria-hidden="true"></i>
+                          <i className="fa fa-quote-left" aria-hidden="true" style={{textIndent:"28px"}}></i><span style={{padding:"0 5px",display:"none"}}>🐙</span>这是一款网页图片化归档工具，可以记录<span style={{padding:"0 5px",display:"none"}}>💾</span>页面每一天<span style={{padding:"0 5px",display:"none"}}>📆</span>的状态。无论你是做竞品分析的产品经理<span style={{padding:"0 5px",display:"none"}}>🐶</span>，还是一个乐于观察的互联网爱好者<span style={{padding:"0 5px",display:"none"}}>👦</span>，这个工具都会成为你的好帮手<span style={{padding:"0 5px",display:"none"}}>🔨</span>。<i className="fa fa-quote-right" aria-hidden="true"></i>
                         </p>
-                        <div style={{margin:"0px auto",padding:"0px 0px 15px 0px",textAlign:"center"}}>
+                        <Block height={15}></Block> 
+                        <div style={{margin:"0px auto",padding:"0px 0px 15px 0px",textAlign:"center",display:"none"}}>
                             <h1 style={{textAlign:"center",color:"white",fontSize:"40px"}}>👇</h1>
                             <Button style={{margin:"20px 0px 0px",border:"2px solid #fff"}} size="large" type="primary" onClick={()=>{this.props.router.push('/login')}}>开始体验</Button>  
                         </div>
