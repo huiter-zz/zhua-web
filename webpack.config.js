@@ -3,9 +3,11 @@ const copy = require('copy-webpack-plugin');
 
 module.exports = function(webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime');
+  /*
   webpackConfig.babel.plugins.push(['import', {
      libraryName: 'antd', style: 'css'
   }]);
+  */
 
   webpackConfig.plugins.push(
     new webpack.ProvidePlugin({
@@ -29,6 +31,17 @@ module.exports = function(webpackConfig, env) {
   
   //设置绝对路径
   webpackConfig.out = {publicPath:"/"};
+  webpackConfig.externals = {
+    'react': 'window.React',
+    'react-router': 'window.ReactRouter',
+    'react-router-redux': 'window.ReactRouterRedux',
+    'react-dom': 'window.ReactDOM',
+    'redux': 'window.Redux',
+    'react-redux': 'window.ReactRedux',
+    'antd': 'window.antd',
+    'moment': 'window.moment',
+    'g2': 'window.g2'
+  }
 
   // Don't extract common.js and common.css
   webpackConfig.plugins = webpackConfig.plugins.filter(function(plugin) {
