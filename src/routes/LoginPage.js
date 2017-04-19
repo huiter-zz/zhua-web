@@ -29,9 +29,9 @@ const Login = (props)=>{
     <div style={{height:"100%"}}>
 
         <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
-          <img style={{position:"fixed",right:"0",margin:"20px 20px 20px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
+          <img style={{zIndex:1001,position:"fixed",right:"0",margin:"20px 20px 20px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
         </Popover>
-        <Button style={{position:"fixed",right:"0",margin:"20px 70px 0px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{props.router.push('/')}}>返回主页</Button>  
+        <Button style={{zIndex:1001,position:"fixed",right:"0",margin:"20px 70px 0px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{props.router.push('/')}}>返回主页</Button>  
 
       <LoginForm onSubmit={ handleSubmit.bind(this) }  />
     </div>

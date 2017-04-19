@@ -54,9 +54,9 @@ class IntroPage extends Component {
             <Content> 
                 <div>
                   <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
-                    <img style={{position:"fixed",right:"0",margin:"20px 20px 20px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
+                    <img style={{zIndex:1001,position:"fixed",right:"0",margin:"20px 20px 20px 20px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
                   </Popover>
-                  <Button style={{position:"fixed",right:"0",margin:"20px 70px 0px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{this.props.router.push('/login')}}>登录系统</Button>  
+                  <Button style={{zIndex:1001,position:"fixed",right:"0",margin:"20px 70px 0px 0px",border:"2px solid #fff"}} type="primary" onClick={()=>{this.props.router.push('/login')}}>登录系统</Button>  
 
                   <Block height={80}></Block> 
                   <h1 style={{textAlign:"center",color:"white",fontSize:"60px"}}>🐙</h1> 
