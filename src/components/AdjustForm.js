@@ -51,6 +51,7 @@ class AdjustForm extends Component {
 
       values.uid = this.props.item.uid; 
       values.type = this.state.type;
+      values.amount = values.amount * 100;
 
       this.props.dispatch({
         type: 'admin/adjust',

@@ -52,7 +52,7 @@ const App = React.createClass({
                   <div style={{display:"table-cell",verticalAlign: "top",padding:"0px 10px"}}>
                     <Block height={5}></Block>
                     <h3 style={{height:"20px",lineHeight:"20px"}}>{this.props.app.user.nickname}</h3>
-                    <span style={{height:"10px",lineHeight:"10px"}}>余额：<span style={{color:"rgb(233, 37, 158)"}}>¥ {this.props.app.user.property? this.props.app.user.property.cash + this.props.app.user.property.gift:0}</span></span>
+                    <span style={{height:"10px",lineHeight:"10px"}}>余额：<span style={{color:"rgb(233, 37, 158)"}}>¥ {this.props.app.user.property? (this.props.app.user.property.cash + this.props.app.user.property.gift)/100:0}</span></span>
                   </div>
                 </div>
               </Board>

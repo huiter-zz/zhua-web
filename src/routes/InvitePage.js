@@ -44,7 +44,7 @@ class InvitePage extends Component {
                     dataIndex: 'operation',
                     render: ( text, record, index) => {
                       if (record.referrals.isPay) {
-                        return(<div><span style={{color:"rgb(233, 37, 158)"}}>+ {record.referrals.amount}</span></div>);
+                        return(<div><span style={{color:"rgb(233, 37, 158)"}}>+ {record.referrals.amount /100}</span></div>);
                       } else {
                         return(<div><span>-</span></div>);
                       }
