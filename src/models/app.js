@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { Message } from 'antd';
+import { message } from 'antd';
 import * as api from '../services/base.js';
 import cookie from '../utils/cookie';
 
@@ -84,14 +84,14 @@ export default {
         var user = JSON.parse(decodeURIComponent(cookie.getCookie('user')));
       }
       catch(e){
-        Message.warning('您的登陆信息已过期，请重新登录！', 3);
+        message.warning('您的登陆信息已过期，请重新登录！', 3);
         yield put(routerRedux.push('/login'));
         return;
       } 
       
    
       if (!user.email) {
-        Message.warning('您的登陆信息已过期，请重新登录！', 3);
+        message.warning('您的登陆信息已过期，请重新登录！', 3);
         yield put(routerRedux.push('/login'));
       } else {
         yield put({
@@ -107,7 +107,7 @@ export default {
       const { data,err} = yield call(api.updateUserInfo, {nickname:payload.nickname,phone:payload.phone? +payload.phone: undefined,avatar:payload.avatar});
 
       if (data) {
-        Message.success('修改成功', 3);
+        message.success('修改成功', 3);
         yield put({
           type: 'updateInfo',
           payload: {
