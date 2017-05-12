@@ -2,8 +2,8 @@
 
 import request from '../utils/request';
 
-let BASE_URL = 'http://127.0.0.1:3000';
-//let BASE_URL = 'https://zhua.pm/api';
+//let BASE_URL = 'http://127.0.0.1:3000';
+let BASE_URL = 'https://zhua.pm/api';
 
 // 注册
 export async function register(params) {
