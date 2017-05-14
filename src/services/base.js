@@ -3,6 +3,7 @@
 import request from '../utils/request';
 import config from '../config.js';
 
+// API 地址
 let BASE_URL = config.baseUrl;
 
 // 注册
