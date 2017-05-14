@@ -1,9 +1,9 @@
 'use strict';
 
 import request from '../utils/request';
+import config from '../config.js';
 
-//let BASE_URL = 'http://127.0.0.1:3000';
-let BASE_URL = 'https://zhua.pm/api';
+let BASE_URL = config.baseUrl;
 
 // 注册
 export async function register(params) {
