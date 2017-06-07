@@ -113,7 +113,7 @@ class IntroPage extends Component {
                     <Col xs={22} sm={18} md={18} lg={12}  style={{maxWidth: 650}}>
                         <Block height={20}></Block> 
                         <p style={{textAlign:"center",color:"white",fontSize:"14px"}}>
-                          我们按照页面的数量进行计费，一个页面，一个月，一块钱。
+                          我们按照页面的数量进行计费，一个页面一天 0.03 元。
                         </p>
                         <div style={{margin:"0px auto",padding:"0px 0px 15px 0px",textAlign:"center"}}>
                             <h1 style={{textAlign:"center",color:"white",fontSize:"40px"}}>💰</h1>

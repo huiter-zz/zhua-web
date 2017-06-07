@@ -132,7 +132,7 @@ class HomePage extends Component {
             <div>
             	页面库
             	<Block height={20}></Block>
-    	        <Alert message="计费规则：0.3元／天，按页面数量计算。" type="info" showIcon/>
+    	        <Alert message="计费规则：0.03 元／天，按页面数量计算。" type="info" showIcon/>
     	       	<InputGroup>
     	       			 <Search
                       placeholder="搜索"

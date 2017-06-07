@@ -7,6 +7,7 @@ import HomePage from './routes/HomePage';
 import InvitePage from './routes/InvitePage';
 import ProfilePage from './routes/ProfilePage';
 import BillPage from './routes/BillPage';
+import CostPage from './routes/CostPage';
 import NotFoundPage from './routes/NotFoundPage';
 import PagePage from './routes/PagePage';
 import AdminPage from './routes/AdminPage';
@@ -23,6 +24,7 @@ export default function({ history }) {
       <Route path="home" component={HomePage} />
       <Route path="invite" component={InvitePage} />
       <Route path="bill" component={BillPage} />
+      <Route path="cost" component={CostPage} />
       <Route path="profile" component={ProfilePage} />
       <Route path="page" component={PagePage} />
       <Route path="admin" component={AdminPage} />

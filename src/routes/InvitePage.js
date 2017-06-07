@@ -14,7 +14,6 @@ class InvitePage extends Component {
       super(props);
       this.paginationOnChange = this.paginationOnChange.bind(this);
       this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
-
     };
 
     paginationOnChange(page){
@@ -30,7 +29,6 @@ class InvitePage extends Component {
     }
 
     render(){      
-            console.log(this.props.invite.pages);
              const columns = [{
                     title: '用户',
                     dataIndex: 'nickname',

@@ -19,6 +19,7 @@ app.model(require('./models/home'));
 app.model(require('./models/invite'));
 app.model(require('./models/page'));
 app.model(require('./models/bill'));
+app.model(require('./models/cost'));
 app.model(require('./models/admin'));
 
 

@@ -63,6 +63,7 @@ const App = React.createClass({
                   <Menu.Item key="profile" theme="light"><Link to="profile"><Icon type="user"/>帐号</Link></Menu.Item>
                   <Menu.Item key="bill" theme="light"><Link to="bill"><Icon type="pay-circle"/>充值</Link></Menu.Item>
                   <Menu.Item key="invite" theme="light"><Link to="invite"><Icon type="qrcode"/>邀请码</Link></Menu.Item>
+                  <Menu.Item key="cost" theme="light"><Link to="cost"><Icon type="file-text" />账单</Link></Menu.Item>
                   {this.props.app.user.isAdmin?<Menu.Item key="admin" theme="light" ><Link to="admin"><Icon type="team"/>管理员</Link></Menu.Item>:''}
                 </Menu>
               </Board>
