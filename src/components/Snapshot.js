@@ -37,8 +37,9 @@ class Snapshot extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.imageUrl != this.props.imageUrl) {
+			console.log(nextProps.imageUrl);
 			this.setState({
-		      imageUrl: 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png',
+		      imageUrl: 'https://omojllq5i.qnssl.com/default/snapshot.png',
 		    });
 		    let url = nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
 		    let that = this;
@@ -46,7 +47,7 @@ class Snapshot extends Component {
 			    that.setState({
 			      imageUrl: url,
 			    });	
-		    },10)
+		    },100)
 
 		}
 
@@ -57,7 +58,7 @@ class Snapshot extends Component {
 	    	<Col style={{marginBottom:"16px"}} span={8}>
 	    		<p>{this.props.date}</p>
 		    	<div style={{maxHeight:"400px",overflow:"scroll",display:"inline-block",marginRight:"8px",border:"2px solid #e1e1e1"}}>
-		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageView2/2/w/720'} style={{width:"100%"}}/></a>
+		    		<a onClick={this.showModal}><img src={this.state.imageUrl === 'https://omojllq5i.qnssl.com/default/snapshot.png' ? this.state.imageUrl: (this.state.imageUrl+ '?imageView2/2/w/330')} style={{width:"100%"}}/></a>
 		      	</div>
 		      	<Modal onCancel={this.handleCancel} title={this.props.date} width={800} visible={this.state.visible} footer={
 			            <Button key="back" type="ghost" size="large" onClick={this.handleCancel}>关闭</Button>

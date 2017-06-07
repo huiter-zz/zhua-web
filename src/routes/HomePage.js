@@ -102,7 +102,7 @@ class HomePage extends Component {
 
               let a = moment(record.lastFetchTime).valueOf();
               let b = new Date().valueOf() - 86400000;
-              return(<div>{ a>b ? <Badge status="success" text="已完成"/>: <Badge status="processing" text="等待"/>}</div>);
+              return(<div>{ (a>b)&&record.lastFetchTime ? <Badge status="success" text="已完成"/>: <Badge status="processing" text="抓取中"/>}</div>);
             }
 
         },{
@@ -110,7 +110,7 @@ class HomePage extends Component {
             dataIndex: 'lastFetchTime',
             key: 'lastFetchTime',
             render: (text, record, index) => {
-              return(<div>{record.lastFetchTime ? moment(record.lastFetchTime).format('YYYY-MM-DD HH:mm:ss'):'无效时间'}</div>);
+              return(<div>{record.lastFetchTime ? moment(record.lastFetchTime).format('YYYY-MM-DD HH:mm:ss'):'-'}</div>);
             }
 
         },{
@@ -132,7 +132,7 @@ class HomePage extends Component {
             <div>
             	页面库
             	<Block height={20}></Block>
-    	        <Alert message="计费规则：1 个链接 1 月只要 1 块钱。" type="info" showIcon/>
+    	        <Alert message="计费规则：0.3元／天，按页面数量计算。" type="info" showIcon/>
     	       	<InputGroup>
     	       			 <Search
                       placeholder="搜索"
