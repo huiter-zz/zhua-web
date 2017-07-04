@@ -71,8 +71,19 @@ export default {
         type: 'deleteLocalPage',
         payload: payload
       })
+    },
+    * refreshPage({ payload },{ call, put}){
+      yield put({
+        type: 'updateLocalPageStatus',
+        payload: {id:payload,status:"exception"}
+      })
+      let obj = yield call(api.refreshPageByID,payload);
+      yield put({
+        type: 'updateLocalPageImgURL',
+        payload: {id:payload,url:obj.data.url,status:"normal"}
+      })
+    
     }
-
   },
 
   reducers: {
@@ -104,6 +115,26 @@ export default {
       });
       
       return {...state, total:state.total - 1, pages: pages};   
+    },
+    updateLocalPageStatus(state,{payload}){
+      var pages = _.each(state.pages,function(item){
+        if (item.id === payload.id) {
+          item.status = payload.status;
+        }
+      });
+      console.log(pages);
+      return {...state, pages: pages};   
+    },
+    updateLocalPageImgURL(state,{payload}){
+      var pages = _.each(state.pages,function(item){
+        if (item.id === payload.id) {
+          item.image = payload.url;
+          item.status = payload.status;
+          item.lastFetchTime = Date.parse(new Date());
+        }
+      });
+      
+      return {...state, pages: pages};   
     },
     updateLocalPagination(state, {payload}){
       return {...state, pageSize:payload.pageSize}; 

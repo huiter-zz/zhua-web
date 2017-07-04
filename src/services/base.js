@@ -121,6 +121,16 @@ export async function deletePageByID(id){
   return req;
 }
 
+// 重新抓取
+export async function refreshPageByID(id){
+  let url = BASE_URL + `/pages/${id}/fetch/snapshots`;
+  let req = request(url,{
+    method: 'post'
+  });
+  return req;
+}
+
+
 // 获取被邀请者列表
 export async function getnvitations(params){
   var url = BASE_URL + '/users/invitations';

@@ -27,7 +27,6 @@ class HomePage extends Component {
       this.goPage = this.goPage.bind(this);
       this.paginationOnChange = this.paginationOnChange.bind(this);
       this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
-      this.editPage = this.editPage(this);
     };
 
     deletePage(id){
@@ -41,9 +40,13 @@ class HomePage extends Component {
       this.props.router.push('/page?id='+id);
     }
 
-    editPage(item){
-
+    refreshPage(id){
+      this.props.dispatch({
+        type: 'home/refreshPage',
+        payload: id
+      })
     }
+
 
     onSearch(value){
       this.props.dispatch({
@@ -102,7 +105,7 @@ class HomePage extends Component {
 
               let a = moment(record.lastFetchTime).valueOf();
               let b = new Date().valueOf() - 86400000;
-              return(<div>{ (a>b)&&record.lastFetchTime ? <Badge status="success" text="已完成"/>: <Badge status="processing" text="抓取中"/>}</div>);
+              return(<div>{ (a>b)&&record.lastFetchTime&&(record.status==="normal")? <Badge status="success" text="已完成"/>: <Badge status="processing" text="抓取中"/>}</div>);
             }
 
         },{
@@ -123,6 +126,10 @@ class HomePage extends Component {
     	            <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
     	            	<Button type="ghost" icon="delete" style={{marginRight:"8px",marginBottom:"6px"}}></Button>
     	            </Popconfirm>
+                  {
+                    record.status==="normal"?<Button type="ghost" icon="reload" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>:<Button type="ghost" icon="loading" disabled style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>
+                  }
+
                 </div>
             )
         }];
