@@ -10,7 +10,7 @@ class SnapshotLarge extends Component {
 		super(props);
 		this.state = {
 			visible : false,
-			imageUrl : 'https://omojllq5i.qnssl.com/default/snapshot.png'
+			imageUrl : 'https://omojllq5i.qnssl.com/default.png'
 		}
 
 		this.showModal = this.showModal.bind(this);
@@ -31,25 +31,22 @@ class SnapshotLarge extends Component {
 
 	componentDidMount() {
 		this.setState({
-	      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
+	      imageUrl: this.props.imageUrl,
 	    });
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.imageUrl != this.props.imageUrl) {
 			this.setState({
-		      imageUrl: 'http://oj54bwg6q.bkt.clouddn.com/default/snapshot.png',
+		      imageUrl: 'https://omojllq5i.qnssl.com/default.png',
 		    });
-		    let url = nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
 		    let that = this;
 		    setTimeout(()=>{
 			    that.setState({
-			      imageUrl: url,
+			      imageUrl: nextProps.imageUrl,
 			    });	
-		    },10)
-
+		    },500)
 		}
-
 	}
 
 	render(){

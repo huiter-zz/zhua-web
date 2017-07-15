@@ -83,11 +83,11 @@ class IntroPage extends Component {
                   <Row type="flex" justify="space-around">
                     <Col xs={22} sm={18} md={18} lg={12}> 
                         <Carousel autoplay>
-                          <div><SnapshotLarge key={1} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170309.png"} date={"2017-03-09"}/></div>
-                          <div><SnapshotLarge key={2} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170307.png"} date={"2017-03-03"}/></div>
-                          <div><SnapshotLarge key={3} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170302.png"} date={"2017-03-02"}/></div>
-                          <div><SnapshotLarge key={5} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170228.png"} date={"2017-02-18"}/></div>
-                          <div><SnapshotLarge key={6} imageUrl={"http://oj54bwg6q.bkt.clouddn.com/58805c23adba660c53f6e127_20170215.png"} date={"2017-02-14"}/></div>
+                          <div><SnapshotLarge key={1} imageUrl={"https://omojllq5i.qnssl.com/58805c23adba660c53f6e127_20170309.png"} date={"2017-03-09"}/></div>
+                          <div><SnapshotLarge key={2} imageUrl={"https://omojllq5i.qnssl.com/58805c23adba660c53f6e127_20170307.png"} date={"2017-03-03"}/></div>
+                          <div><SnapshotLarge key={3} imageUrl={"https://omojllq5i.qnssl.com/58805c23adba660c53f6e127_20170302.png"} date={"2017-03-02"}/></div>
+                          <div><SnapshotLarge key={5} imageUrl={"https://omojllq5i.qnssl.com/58805c23adba660c53f6e127_20170228.png"} date={"2017-02-18"}/></div>
+                          <div><SnapshotLarge key={6} imageUrl={"https://omojllq5i.qnssl.com/58805c23adba660c53f6e127_20170215.png"} date={"2017-02-14"}/></div>
                         </Carousel>
                     </Col>
                   </Row>

@@ -20,7 +20,6 @@ function checkStatus(response) {
 
   return response.json().then((err) => {
     error.response = err;
-    console.log(message);
     switch (error.response.errcode)
     {
       case -2:

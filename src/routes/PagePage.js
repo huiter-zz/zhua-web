@@ -55,6 +55,12 @@ class PagePage extends Component {
                 页面
               </div>
               <Block height={20}></Block>
+              <Alert
+                message="页面图片大小平均在 500 KB 左右，如遇加载缓慢请耐心等待。。。"
+                type="warning"
+                showIcon
+              />
+              <Block height={0}></Block>
               <Row> 
                 {items}
               </Row>

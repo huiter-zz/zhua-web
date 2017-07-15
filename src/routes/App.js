@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Menu, Card,Breadcrumb, Icon, Row, Col, notification, Popconfirm} from 'antd';
+import { Menu, Card,Breadcrumb, Icon, Row, Col, notification, Popconfirm, Alert} from 'antd';
 import { Router, Route, IndexRoute, Link, History} from 'dva/router';
 import Block from '../components/Block';
 import Board from '../components/Board';

@@ -52,19 +52,19 @@ class AdminPage extends Component {
                     title: '总余额',
                     render: ( record, index) => {
                       console.log(record.property.cash + record.property.gift);
-                      return (<div><span style={{color:"rgb(233, 37, 158)"}}>¥ {(record.property.cash + record.property.gift)/100}</span></div>)
+                      return (<div><span style={{color:"rgb(233, 37, 158)"}}>¥ {Math.floor(record.property.cash + record.property.gift)/100}</span></div>)
                     }
                 },
                 {
                     title: '现金',
                     render: ( record, index) => {
-                      return (<div><span>{record.property.cash /100}</span></div>)
+                      return (<div><span>{Math.floor(record.property.cash) /100}</span></div>)
                     }
                 },
                 {
                     title: '赠送',
                     render: ( record, index) => {
-                      return (<div><span>{record.property.gift /100}</span></div>)
+                      return (<div><span>{Math.floor(record.property.gift) /100}</span></div>)
                     }
                 },{
                     title: '操作',

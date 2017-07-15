@@ -3,6 +3,7 @@
  */
 import React,{Component,PropTypes} from 'react';
 import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pagination, DatePicker,Modal} from 'antd';
+import Block from './Block';
 
 class Snapshot extends Component {
 
@@ -10,7 +11,7 @@ class Snapshot extends Component {
 		super(props);
 		this.state = {
 			visible : false,
-			imageUrl : 'https://omojllq5i.qnssl.com/default/snapshot.png'
+			imageUrl : 'https://omojllq5i.qnssl.com/default.png'
 		}
 
 		this.showModal = this.showModal.bind(this);
@@ -29,41 +30,42 @@ class Snapshot extends Component {
 	    });
 	}
 
+	componentWillMount() {
+	    let that = this;
+	    setTimeout(()=>{
+		    that.setState({
+		      imageUrl: this.props.imageUrl,
+		    });	
+	    },0)
+	}
+	
 	componentDidMount() {
-		this.setState({
-	      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
-	    });
+
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.imageUrl != this.props.imageUrl) {
-			console.log(nextProps.imageUrl);
 			this.setState({
-		      imageUrl: 'https://omojllq5i.qnssl.com/default/snapshot.png',
+		      imageUrl: 'https://omojllq5i.qnssl.com/default.png',
 		    });
-		    let url = nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
 		    let that = this;
 		    setTimeout(()=>{
 			    that.setState({
-			      imageUrl: url,
+			      imageUrl: nextProps.imageUrl,
 			    });	
 		    },100)
-
 		}
-
 	}
 
 	render(){
 		return(
 	    	<Col style={{marginBottom:"16px"}} span={8}>
-	    		<p>{this.props.date}</p>
-		    	<div style={{maxHeight:"400px",overflow:"scroll",display:"inline-block",marginRight:"8px",border:"2px solid #e1e1e1"}}>
-		    		<a onClick={this.showModal}><img src={this.state.imageUrl === 'https://omojllq5i.qnssl.com/default/snapshot.png' ? this.state.imageUrl: (this.state.imageUrl+ '?imageView2/2/w/330')} style={{width:"100%"}}/></a>
+	    		<h4>{this.props.date}</h4>
+	    		<Block height={5}></Block>
+		    	<div style={{overflow:"scroll",maxHeight:"400px",display:"inline-block",marginRight:"8px",border:"2px solid #f1efef"}}>
+		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageView2/2/w/330'} style={{width:"100%"}}/></a>
 		      	</div>
-		      	<Modal onCancel={this.handleCancel} title={this.props.date} width={800} visible={this.state.visible} footer={
-			            <Button key="back" type="ghost" size="large" onClick={this.handleCancel}>关闭</Button>
-			          }
-		        >
+		      	<Modal onCancel={this.handleCancel} title={this.props.date} width={800} visible={this.state.visible} footer={<Button key="back" type="ghost" size="large" onClick={this.handleCancel}>关闭</Button>}>
 		        	<img src={this.state.imageUrl} style={{width:"100%",height:"auto",overflow:"scroll"}}/>
 		        </Modal>
 	      	</Col>
