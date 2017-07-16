@@ -11,6 +11,13 @@ import styles from './App.css';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
+const text = <div><span style={{fontSize:16}}><b>客服</b></span></div>;
+const content = (
+    <div>
+      <p><img width="200px" src="https://omojllq5i.qnssl.com/wechat.jpeg"/></p>
+    </div>
+);
+
 
 const App = React.createClass({
 

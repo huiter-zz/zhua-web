@@ -78,6 +78,12 @@ export default {
       yield put(routerRedux.push('/login'));
 
     },
+    *resetPassword({payload}, { call , put}) {
+      const { data } = yield call(api.resetPassword, payload);
+      if (data && data.result) { 
+        message.success('修改成功', 3); 
+      }
+    },
     *isLogin(payload, { call, put, select }) {
 
       try{
