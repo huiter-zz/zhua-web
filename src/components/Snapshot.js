@@ -34,7 +34,7 @@ class Snapshot extends Component {
 	    let that = this;
 	    setTimeout(()=>{
 		    that.setState({
-		      imageUrl: this.props.imageUrl,
+		      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),,
 		    });	
 	    },0)
 	}
@@ -51,7 +51,7 @@ class Snapshot extends Component {
 		    let that = this;
 		    setTimeout(()=>{
 			    that.setState({
-			      imageUrl: nextProps.imageUrl,
+			      imageUrl: nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),,
 			    });	
 		    },100)
 		}
