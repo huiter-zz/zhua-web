@@ -54,7 +54,7 @@ const App = React.createClass({
               <Board>
                 <div style={{padding:"10px 20px 5px 10px"}}>
                   <div style={{display:"table-cell",verticalAlign: "top"}}>
-                    <img width="50px" src={this.props.app.user.avatar} />
+                    <img width="50px" src={this.props.app.user.avatar.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com")} />
                   </div>
                   <div style={{display:"table-cell",verticalAlign: "top",padding:"0px 10px"}}>
                     <Block height={5}></Block>

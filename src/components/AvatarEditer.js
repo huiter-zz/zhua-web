@@ -13,7 +13,7 @@ class AvatarEditer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        imageUrl: this.props.imageUrl,
+        imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
         showButton: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,13 +52,13 @@ class AvatarEditer extends Component {
     const _self = this;
     this.props.dispatch({
       type: 'app/updateProfile',
-      payload: {avatar:this.state.imageUrl}
+      payload: {avatar:this.state.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com")}
     });
   };
 
 
   render() {
-    const imageUrl = this.state.imageUrl;
+    const imageUrl = this.state.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
     console.log(imageUrl);
     return (
       <div>
