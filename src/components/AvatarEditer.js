@@ -65,7 +65,7 @@ class AvatarEditer extends Component {
         <Upload
           name="file"
           showUploadList={false}
-          action="https://zhua.pm/files/upload"
+          action="https://zhua.pm/api/files/upload"
           withCredentials={true}
           beforeUpload={beforeUpload}
           onChange={this.handleChange}

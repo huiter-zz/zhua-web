@@ -24,7 +24,7 @@ function checkStatus(response) {
     {
       case -2:
         message.warning('没有权限', 3);
-        setTimeout(()=>{window.location.href="/login";},1000)
+        setTimeout(()=>{window.location.href="/login"},500)
         break;
       case 40001:
         message.warning('请检查邮件地址', 3);
