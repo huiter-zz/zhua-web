@@ -75,13 +75,23 @@ export default {
     * refreshPage({ payload },{ call, put}){
       yield put({
         type: 'updateLocalPageStatus',
-        payload: {id:payload,status:"exception"}
+        payload: {id:payload,status:"fetching"}
       })
       let obj = yield call(api.refreshPageByID,payload);
-      yield put({
-        type: 'updateLocalPageImgURL',
-        payload: {id:payload,url:obj.data.url,status:"normal"}
-      })
+
+      if (obj.data.url) {
+        yield put({
+          type: 'updateLocalPageImgURL',
+          payload: {id:payload,url:obj.data.url,status:"normal"}
+        }) 
+      } else {
+        yield put({
+          type: 'updateLocalPageImgURL',
+          payload: {id:payload,url:'https://omojllq5i.qnssl.com/default.png',status:"exception"}
+        }) 
+      }
+
+
     
     }
   },

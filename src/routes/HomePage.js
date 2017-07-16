@@ -105,9 +105,13 @@ class HomePage extends Component {
 
               let a = moment(record.lastFetchTime).valueOf();
               let b = new Date().valueOf() - 86400000;
-              return(<div>{ (a>b)&&record.lastFetchTime&&(record.status==="normal")? <Badge status="success" text="已完成"/>: <Badge status="processing" text="抓取中"/>}</div>);
+              switch(record.status) {
+                case "normal": return <Badge status="success" text="已完成"/>
+                case "exception": return <Badge status="warning" text="异常"/>
+                case "fetching":return <Badge status="processing" text="抓取中"/>
+                default : return '-';
+              }
             }
-
         },{
             title: '最近抓取时间',
             dataIndex: 'lastFetchTime',
@@ -127,7 +131,7 @@ class HomePage extends Component {
     	            	<Button type="ghost" icon="delete" style={{marginRight:"8px",marginBottom:"6px"}}></Button>
     	            </Popconfirm>
                   {
-                    record.status==="normal"?<Button type="ghost" icon="reload" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>:<Button type="ghost" icon="loading" disabled style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>
+                    record.status!="fetching"?<Button type="ghost" icon="reload" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>:<Button type="ghost" icon="loading" disabled style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>
                   }
 
                 </div>

@@ -102,7 +102,7 @@ class RegisterForm extends Component {
               <Link to="login">已有帐号</Link>
             </div>
             <p style={{ textAlign:'center',marginTop:"20px",color:"white"}}>
-              版权所有 © 2016 爪小组
+              版权所有 © 2017 爪小组
             </p>
           </Col>
         </Row>
