@@ -62,7 +62,7 @@ class PassswordForm extends Component {
     return (
       <span>
 
-            <Button type="danger" size="small" onClick={ ()=>{this.setState({visible:true})}}>设置新密码</Button>
+            <Button type="danger" size="small" onClick={ ()=>{this.props.form.resetFields();this.setState({visible:true})}}>设置新密码</Button>
             <Modal title="修改密码"
                       visible={this.state.visible}
                       onOk={this.handleSubmit}
