@@ -59,7 +59,6 @@ class AvatarEditer extends Component {
 
   render() {
     const imageUrl = this.state.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com");
-    console.log(imageUrl);
     return (
       <div>
         <Upload

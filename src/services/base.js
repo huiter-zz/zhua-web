@@ -29,7 +29,6 @@ export async function login(params) {
 // 重置密码
 export async function resetPassword(params) {
   let url = BASE_URL + '/users/me/password';
-  console.log('params',params);
   let req = request(url,{
     method: 'put',
     body: JSON.stringify(params)

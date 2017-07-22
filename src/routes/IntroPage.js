@@ -42,7 +42,7 @@ class IntroPage extends Component {
                 <Col xs={7} sm={7} md={7} lg={7}>
 
 
-                    <Affix offsetTop={0} onChange={affixed => console.log(affixed)}>
+                    <Affix offsetTop={0}>
                       <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="hover">
                         <img style={{float:"right",margin:"10px 20px 20px 0px",borderRadius:"50%",border:"1px solid #fff"}} width="30px" src={"/assets/img/huiter.jpg"} />
                       </Popover>

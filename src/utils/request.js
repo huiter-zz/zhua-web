@@ -6,7 +6,6 @@ import cookie from './cookie';
 import { message } from 'antd';
 
 
-console.log(message);
 function parseJSON(response) {
   return response.json();
 }

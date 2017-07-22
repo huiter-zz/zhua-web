@@ -111,7 +111,6 @@ export default {
     },
     *updateProfile({payload}, { call, put, select }) {
       const { data,err} = yield call(api.updateUserInfo, {nickname:payload.nickname,phone:payload.phone? +payload.phone: undefined,avatar:payload.avatar});
-
       if (data) {
         message.success('修改成功', 3);
         yield put({
@@ -127,7 +126,8 @@ export default {
 
   reducers: {
     updateInfo(state, action) {
-      let user = action.payload && action.payload.info;
+      let data = action.payload && action.payload.info;
+      var user = {...state.user,...data};
       document.cookie = 'user=' + encodeURIComponent(JSON.stringify(user));
       return {...state,user:user};
     }

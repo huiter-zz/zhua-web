@@ -54,7 +54,6 @@ export default {
 
   reducers: {
     updateLocalPageList(state, {payload}) {
-      console.log(payload);
       return {...state, total:payload.total , pages :payload.data , current:payload.current};
     },
     updateLocalPagination(state, {payload}){

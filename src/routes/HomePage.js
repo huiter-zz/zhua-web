@@ -15,6 +15,8 @@ import PageEditForm from '../components/PageEditForm';
 
 const Search = Input.Search;
 const InputGroup = Input.Group;
+var ws = null;
+
 
 class HomePage extends Component {
 
@@ -30,18 +32,19 @@ class HomePage extends Component {
       this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
 
 
-      var ws = null;
+      
       var connect = function () {
-        ws = new WebSocket('ws://zhua.pm/ws?token='+props.app.user.access_token);
-        ws.onmessage = function(event){
-           console.log(event);
-            props.dispatch({
-              type: 'home/wsEventUpdate',
-              payload: JSON.parse(event.data)
-            })
-        };
+        if (props.app.user.access_token) {
+          ws = new WebSocket('ws://zhua.pm/ws?token='+props.app.user.access_token);
+          ws.onmessage = function(event){
+              props.dispatch({
+                type: 'home/wsEventUpdate',
+                payload: JSON.parse(event.data)
+              })
+          };
 
-        ws.onclose = disConnect;
+          ws.onclose = disConnect;
+        }
       }
 
       var disConnect = function(){
@@ -52,6 +55,12 @@ class HomePage extends Component {
 
       connect();
     };
+
+    componentWillUnmount(){
+      //组件卸载时关闭 websocket
+      ws.onclose = null;
+      ws.close();
+    }
 
     deletePage(id){
       this.props.dispatch({

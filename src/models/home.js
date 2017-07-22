@@ -132,7 +132,6 @@ export default {
           item.status = payload.status;
         }
       });
-      console.log(pages);
       return {...state, pages: pages};   
     },
     updateLocalPageImgURL(state,{payload}){
@@ -163,7 +162,7 @@ export default {
           return item;
         }
       })
-      console.log(pages);
+  
       return {...state, pages: pages}; 
     },
 
