@@ -151,7 +151,21 @@ export default {
     },
     updateLocalKeyword(state, {payload}){
       return {...state, keyword:payload.keyword}; 
-    }
+    },
+    wsEventUpdate(state, {payload}) {
+      let pages = _.map(state.pages,(item)=>{
+        if (item.id === payload.id) {
+          var timestamp=new Date().getTime();
+          var page = {...item,status:payload.status,image:payload.url,lastFetchTime:timestamp}
+          return page;
+        }
+        else{
+          return item;
+        }
+      })
+      console.log(pages);
+      return {...state, pages: pages}; 
+    },
 
   },
 

@@ -5,7 +5,8 @@ import Block from '../components/Block';
 import Screen from '../components/Screen';
 import { Link } from 'dva/router';
 import { routerRedux } from 'dva/router';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+
 
 // 加载其它组件
 
@@ -27,6 +28,29 @@ class HomePage extends Component {
       this.goPage = this.goPage.bind(this);
       this.paginationOnChange = this.paginationOnChange.bind(this);
       this.paginationOnShowSizeChange = this.paginationOnShowSizeChange.bind(this);
+
+
+      var ws = null;
+      var connect = function () {
+        ws = new WebSocket('ws://zhua.pm/ws?token='+props.app.user.access_token);
+        ws.onmessage = function(event){
+           console.log(event);
+            props.dispatch({
+              type: 'home/wsEventUpdate',
+              payload: JSON.parse(event.data)
+            })
+        };
+
+        ws.onclose = disConnect;
+      }
+
+      var disConnect = function(){
+          setTimeout(function(){
+               connect();
+          },2000);
+      }
+
+      connect();
     };
 
     deletePage(id){
@@ -174,8 +198,8 @@ class HomePage extends Component {
 };
 
 
-function mapStateToProps({ home }) {
-  return { home };
+function mapStateToProps({ home,app }) {
+  return { home,app };
 }
 
 export default connect(mapStateToProps)(withRouter(HomePage));
