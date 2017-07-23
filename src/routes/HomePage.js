@@ -208,7 +208,7 @@ class HomePage extends Component {
 
 
 function mapStateToProps({ home,app,loading}) {
-  loading = loading.models.home;
+  loading = loading.effects['home/query']
   return { home,app,loading };
 }
 
