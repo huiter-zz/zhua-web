@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Row, Col, Form, Icon, Input, Button, Checkbox, Modal, Tag, Message } from 'antd';
+import { Row, Col, Form, Icon, Input, Button, Checkbox, Modal, Tag, Message,Tooltip } from 'antd';
 import { Link } from 'dva/router';
 import Block from './Block';
 import Board from './Board';
@@ -93,8 +93,10 @@ class PageEditForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
           <div style={{display:"inline"}}>
-            <Button type="ghost" icon="edit" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.props.form.resetFields();this.setState({visible:true})}}></Button>
-            <Modal title="添加页面"
+            <Tooltip placement="top" title="编辑页面">
+              <Button type="ghost" icon="edit" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.props.form.resetFields();this.setState({visible:true})}}></Button>
+            </Tooltip>
+            <Modal title="修改页面"
                 visible={this.state.visible}
                 onOk={this.handleOk}
                 confirmLoading={this.props.confirmLoading}

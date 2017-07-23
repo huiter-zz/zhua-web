@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Row, Col, Form, Icon, Input, Button, Checkbox, Modal, Tag, Message } from 'antd';
+import { Row, Col, Form, Icon, Input, Button, Checkbox, Modal, Tag, Message,Tooltip } from 'antd';
 import { Link } from 'dva/router';
 import Block from './Block';
 import Board from './Board';
@@ -78,7 +78,9 @@ class PageCreateForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
           <div style={{display:"inline-block",verticalAlign: "top"}}>
-            <Button type="ghost" icon="plus" onClick={()=>{this.props.form.resetFields();this.setState({visible:true});}}>添加</Button>
+            <Tooltip placement="top" title="添加页面">
+              <Button type="ghost" icon="plus" onClick={()=>{this.props.form.resetFields();this.setState({visible:true});}}>添加</Button>
+            </Tooltip>
             <Modal title="添加页面"
                 visible={this.state.visible}
                 onOk={this.handleOk}

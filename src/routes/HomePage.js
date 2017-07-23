@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pagination} from 'antd';
+import { Table, Input, Icon, Button, Popconfirm, Alert, Badge, Tag, Row, Col, Pagination,Tooltip} from 'antd';
 import Block from '../components/Block';
 import Screen from '../components/Screen';
 import { Link } from 'dva/router';
@@ -159,12 +159,14 @@ class HomePage extends Component {
             render: ( text, record, index) => (
             	<div>
                   <PageEditForm item={record}></PageEditForm>
-    	            <Button type="ghost" icon="inbox" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.goPage(record.id)}}></Button>
-    	            <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
-    	            	<Button type="ghost" icon="delete" style={{marginRight:"8px",marginBottom:"6px"}}></Button>
+    	            <Tooltip placement="top" title="查看归档">
+                    <Button type="ghost" icon="inbox" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.goPage(record.id)}}></Button>
+                  </Tooltip>
+                  <Popconfirm title="确定要删除吗？" onConfirm={()=>{ this.deletePage(record.id)}}>
+                    <Tooltip placement="top" title="删除页面"><Button type="ghost" icon="delete" style={{marginRight:"8px",marginBottom:"6px"}}></Button></Tooltip>
     	            </Popconfirm>
                   {
-                    record.status!="fetching"?<Button type="ghost" icon="reload" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>:<Button type="ghost" icon="loading" disabled style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>
+                    record.status!="fetching"?<Tooltip placement="top" title="重新抓取"><Button type="ghost" icon="reload" style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button></Tooltip>:<Button type="ghost" icon="loading" disabled style={{marginRight:"8px",marginBottom:"6px"}} onClick={()=>{this.refreshPage(record.id)}}></Button>
                   }
 
                 </div>
