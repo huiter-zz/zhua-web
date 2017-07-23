@@ -36,7 +36,7 @@ class Snapshot extends Component {
 		    that.setState({
 		      imageUrl: this.props.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
 		    });	
-	    },0)
+	    },300)
 	}
 	
 	componentDidMount() {
@@ -53,7 +53,7 @@ class Snapshot extends Component {
 			    that.setState({
 			      imageUrl: nextProps.imageUrl.replace("http://oj54bwg6q.bkt.clouddn.com", "https://omojllq5i.qnssl.com"),
 			    });	
-		    },100)
+		    },300)
 		}
 	}
 
@@ -62,6 +62,7 @@ class Snapshot extends Component {
 	    	<Col style={{marginBottom:"16px"}} span={8}>
 	    		<h4>{this.props.date}</h4>
 	    		<Block height={5}></Block>
+
 		    	<div style={{overflow:"scroll",maxHeight:"400px",display:"inline-block",marginRight:"8px",border:"2px solid #f1efef"}}>
 		    		<a onClick={this.showModal}><img src={this.state.imageUrl + '?imageView2/2/w/330'} style={{width:"100%"}}/></a>
 		      	</div>

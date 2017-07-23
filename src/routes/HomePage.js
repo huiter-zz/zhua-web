@@ -35,7 +35,7 @@ class HomePage extends Component {
       
       var connect = function () {
         if (props.app.user.access_token) {
-          ws = new WebSocket('ws://zhua.pm/ws?token='+props.app.user.access_token);
+          ws = new WebSocket('wss://zhua.pm/ws?token='+props.app.user.access_token);
           ws.onmessage = function(event){
               props.dispatch({
                 type: 'home/wsEventUpdate',
@@ -187,7 +187,7 @@ class HomePage extends Component {
     	       	</InputGroup>
 
     	        <Block height={10}></Block>
-              <Table rowKey={record => record.id}  scroll={{x:600}} columns = { columns } dataSource = { this.props.home.pages } pagination={false}/> 
+              <Table rowKey={record => record.id}  scroll={{x:600}} columns = { columns } dataSource = { this.props.home.pages } pagination={false} loading={this.props.loading}/> 
               <Block height={20}></Block>
               <Row type="flex" justify="end">
                 <Pagination 
@@ -207,8 +207,9 @@ class HomePage extends Component {
 };
 
 
-function mapStateToProps({ home,app }) {
-  return { home,app };
+function mapStateToProps({ home,app,loading}) {
+  loading = loading.models.home;
+  return { home,app,loading };
 }
 
 export default connect(mapStateToProps)(withRouter(HomePage));

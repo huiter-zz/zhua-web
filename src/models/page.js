@@ -23,7 +23,13 @@ export default {
                   id:location.query.id,
                 },
             })
-        } 
+        } else {
+            dispatch({
+                type: 'reset',
+                payload:{
+                },
+            })
+        }
       });
     },
   },
@@ -53,6 +59,9 @@ export default {
     updateLocalSnapShotList(state, {payload}) {
       return {...state, total:payload.total , snapshots :payload.data , current:payload.current};
     },
+    reset(state,{payload}){
+      return {...state, snapshots: [],total: 0,current: 1,pageSize: 6}
+    }
   },
 
 }
